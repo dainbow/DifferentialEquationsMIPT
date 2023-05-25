@@ -1,0 +1,381 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{indentfirst}            % красная строка в первом абзаце
+\usepackage[unicode]{hyperref}
+\usepackage{epigraph}
+\frenchspacing                      % равные пробелы между словами и предложениями
+
+%%% Дополнительная работа с математикой
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} % пакеты AMS
+\usepackage{bbm} % Blackboard bold для цифр
+\usepackage{icomma}                                    % "Умная" запятая
+
+\renewcommand{\phi}{\ensuremath{\varphi}}
+\renewcommand{\kappa}{\ensuremath{\varkappa}}
+\renewcommand{\le}{\ensuremath{\leqslant}}
+\renewcommand{\leq}{\ensuremath{\leqslant}}
+\renewcommand{\ge}{\ensuremath{\geqslant}}
+\renewcommand{\geq}{\ensuremath{\geqslant}}
+\renewcommand{\emptyset}{\ensuremath{\varnothing}}
+
+\newcommand{\cl}{\text{cl }}
+\newcommand{\setint}{\text{int }}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}[section]
+\newtheorem{lemma}{Лемма}[section]
+\newtheorem{proposition}{Утверждение}[section]
+\newtheorem*{corollary}{Следствие}
+\newtheorem*{exercise}{Упражнение}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Определение}[section]
+\newtheorem*{note}{Замечание}
+\newtheorem*{reminder}{Напоминание}
+\newtheorem*{example}{Пример}
+\newtheorem*{tasks}{Вопросы и задачи}
+
+\theoremstyle{remark}
+\newtheorem*{solution}{Решение}
+
+%%% Оформление страницы
+\usepackage{extsizes}     % Возможность сделать 14-й шрифт
+\usepackage{geometry}     % Простой способ задавать поля
+\usepackage{setspace}     % Интерлиньяж
+\usepackage{enumitem}     % Настройка окружений itemize и enumerate
+\setlist{leftmargin=25pt} % Отступы в itemize и enumerate
+
+\geometry{top=25mm}    % Поля сверху страницы
+\geometry{bottom=30mm} % Поля снизу страницы
+\geometry{left=20mm}   % Поля слева страницы
+\geometry{right=20mm}  % Поля справа страницы
+
+\begin{document}
+\tableofcontents
+\newpage
+
+\section{Основные понятия, простейшие типы дифференциальных уравнений}
+\subsection{Основные понятия}
+\begin{definition}
+	Уравнение вида
+	\begin{equation}
+		\label{SDE}
+		F(x,\, y,\, \ldots,\, y^{(n)}) = 0
+	\end{equation}
+
+	называется обыкновенным дифференциальным уравнением $n$-го порядка.
+\end{definition}
+
+\begin{definition}
+	Функция $\phi(x)$, определённая на $I$ вместе со своими $n$ производными, называется решением уравнения (\ref*{SDE}), если:
+
+	\begin{enumerate}
+		\item $\phi$ и все её $n$ производных непрерывны на $I$.
+		\item $\forall x \in I:\: (x,\, \phi(x),\, \phi'(x),\, \ldots,\, \phi^{(n)}(x)) \in \Omega$, где $\Omega$ - область определения $F$.
+		\item $\forall x \in I:\: F(x,\, \phi(x),\, \phi'(x),\,\ldots,\,\phi^{(n)}) = 0$
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}
+	Решение $y = \phi(x),\, x \in \langle a,\, b\rangle$ уравнения (\ref*{SDE}) называется продолжаемым вправо, если существует такое решение $y = \psi(x),\, x \in \langle a,\, b_1 \rangle,\, \langle a,\, b\rangle \subset \langle a,\, b_1 \rangle$, что $\phi(x) \equiv \psi(x)$ при $x \in \langle a,\, b\rangle$
+
+	Аналогично определяется продолжение решения влево.
+\end{definition}
+
+\begin{definition}
+	Решение называется непродолжаемым, если его нельзя продолжить ни вправо, ни влево.
+\end{definition}
+
+\begin{definition}
+	Система дифференциальных уравнений называется автономной, если она имеет вид:
+	\[
+		\frac{dx_k}{dt} = f_k(x_1,\, \ldots,\,x_n);\; k = 1,\,\ldots,\,n
+	\]
+	также очень часто автономные системы записываются в компактном векторном виде:
+	\begin{equation}
+		\label{Autonomius}
+		\dot{x} = F(x),\, x \in \Omega \subseteq E^n
+	\end{equation}
+
+\end{definition}
+
+\begin{definition}
+	Непрерывно дифференцируемая в $\Omega$ функция $u(x)$ называется первым интегралом системы $(\ref*{Autonomius})$, если $\forall t \in T:\: u(x(t)) \equiv const$ для каждого решения $x(t)$ этой системы.
+\end{definition}
+
+\begin{definition}
+	Если поставить в соответствие каждой точке $(x,\, y)$ некоторого множества $\Omega \subseteq E^2$ вектор с координатными представлением $(1,\, f(x,\,y))$, то полученное векторное множество принято называть полем направлений ОДУ первого порядка.
+\end{definition}
+
+\begin{definition}
+	Векторное поле - это отображение, которое сопоставляет каждой точке некоторого пространства вектор
+\end{definition}
+
+\begin{definition}
+	Пусть $x(t)$ есть частное решение системы (\ref*{Autonomius}), тогда вектор-функция $x(t),\, t \in T$, параметрически задаёт некоторую линию в $E^n$, называемую фазовой траекторией этой системы.
+\end{definition}
+
+\begin{definition}
+	Совокупность фазовых траекторий для всех частных решений будем именовать фазовым портретом системы (\ref*{Autonomius})
+\end{definition}
+
+\begin{definition}
+	График функции $y = \phi(x)$ можно рассматривать как геометрическое представление частного решения уравнения (\ref*{SDE}). Этот график обычно называют интегральной кривой уравнения (\ref*{SDE}).
+\end{definition}
+
+\subsection{Простейшие типы уравнений первого порядка}
+
+\subsubsection*{Уравнения с разделяющимися переменными}
+\begin{definition}
+	Уравнения с разделяющимися переменными - это уравнения, которые могут быть записаны в виде
+
+	\[y' = f(x)g(y)\; f(x) \in C(I_1),\, g(y) \in C(I_2)\]
+
+	или же в виде
+
+	\[M(x)N(y)dx + P(x)Q(y)dy = 0\]
+\end{definition}
+
+\begin{note}
+	Если же $y_k \in I_2$ решение уравнения $g(y) = 0$, то $y \equiv y_k$ -- решение дифф. уравнения
+\end{note}
+
+Если же $y(x)$ нигде не принимает значение $y_k$, то $g(y) \neq 0$, а потому мы можем делить на него. Значит, чтобы решить исходное уравнение, необходимо разделить переменные, то есть, привести уравнение к такой форме, чтобы при дифференциале $dx$ стояла функция, зависящая лишь от $x$, а при дифференциале $dy$ -- функция, зависящая от $y$.
+
+\subsubsection*{Однородные уравнения}
+\begin{definition}
+	Функция двух переменных $f(x,\,y)$ называется однородной степени $m$, если для всех $t$ справедливо соотношение:
+	\[f(tx,\,ty) = t^mf(x,\,y)\]
+\end{definition}
+
+\begin{definition}
+	Однородным дифференциальным уравнением называется уравнение вида
+	\[M(x,\,y)dx + N(x,\,y)dy = 0\]
+	если $M(x,\,y)$ и $N(x,\,y)$ -- однородные функции одной и той же степени $m$.
+\end{definition}
+
+Однородное уравнение приводится к уравнению с разделяющимися переменными с помощью замены искомой функции $y(x)$ по формуле:
+\[t(x) = \frac{y(x)}{x}\]
+
+Тогда производная $y'$ и дифференциал $dy$ заменяются по формулам:
+\[y' = t'x + t,\,\, dy = tdx + xdt\]
+
+\subsubsection*{Линейные уравнения}
+\begin{definition}
+	Линейным уравнением первого порядка называется уравнение, линейное относительно искомой функции $y(x)$ и её производной, то есть, уравнения вида
+	\[y' + a(x)y = b(x)\;\;\; a(x),\,b(x) \in C(I)\]
+
+	Функция $b(x)$ называется свободным членом уравнения.
+
+	Уравнение \[y' + a(x)y = 0\] называется линейным однородным уравнением, соответствующим изначальному линейному уравнению.
+\end{definition}
+
+Покажем, что однородное уравнение является уравнением с разделяющимися перменными
+
+\[y' + a(x)y = 0 \Rightarrow \int \frac{dy}{y} = -\int a(x) dx \Rightarrow |y| = e^C \cdot e^{-\int_{x_0}^x a(t) dt}\]
+
+Объединяя все решения, получаем общее решение:
+\[y_0 = C \exp\left[-\int_{x_0}^x a(t) dt\right]\]
+
+Будем искать частное решение исходного линейного уравнения методом вариации постоянной:
+\[y_{\textbf{ч}} = C(x) \cdot \exp\left[-\int_{x_0}^x a(t) dt\right]\]
+
+\subsubsection*{Уравнение Бернулли}
+\begin{definition}
+	Нелинейное уравнение первого порядка вида
+	\[y' + a(x)y = b(x)y^m,\;\;\; m \neq 0,\, m \neq 1,\, a,\,b \in C(I)\]
+	называется уравнением Бернулли.
+\end{definition}
+
+Заметим, что $y = 0$ -- решение уравнения Бернулли при $m > 0$.
+
+Если $y \neq 0$, то, разделив уравнение на $y^m$ и вводя новую неизвестную функцию $z = y^{1 - m}$, относительно функции $z$ получаем линейное уравнение.
+
+\subsubsection*{Уравнение Рикатти}
+\begin{definition}
+	Нелинейное уравнение первого порядка вида
+	\[y' = a(x)y^2 + b(x)y + c(x) \;\;\; a,\,b\,\,c \in C(I)\]
+	называется уравнением Рикатти
+\end{definition}
+
+В отличие от всех уравнений, рассматривавшихся ранее, уравнение Рикатти не всегда интегрируется в квадратурах. Чтобы решить его, необходимо знать хотя бы одно частное решение $y = y_1(x)$ этого уравнения. Тогда замена $y = y_1 + z$ приводит это уравнение к уравнению Бернулли.
+
+\subsubsection*{Логистическое уравнение Ферхюльста}
+\begin{note}
+	Исходные предположения для вывода уравнения при рассмотрении популяционной динамики выглядит следующим образом:
+	\begin{itemize}
+		\item Скорость размножения популяции пропорциональна её текущей численности при прочих равных условиях
+		\item Скорость размножения популяции пропорциональна количеству доступных ресурсов при прочих равных условиях.
+	\end{itemize}
+\end{note}
+
+\begin{definition}
+	Обозначая через $P$ численность популяции, а время - $t$, модель можно свести к дифференциальному уравнению
+	\[\frac{dP}{dt} = rP(1 - \frac{P}{K})\]
+	где параметр $r$ характеризует скорость роста, а $K$ -- максимальную возможную численность популяции.
+\end{definition}
+
+\begin{note}
+	Точным решения является логистическая функция, S-образная кривая:
+	\[P(t) = \frac{KP_0e^{rt}}{K + P_0(e^{rt}-1)}\] где $P_0$ -- начальная популяция, и $\lim\limits_{t \to \infty} P(t) = K$.
+\end{note}
+
+\subsection{Уравнения в полных дифференциалах, интегрирующий множитель}
+\subsubsection*{Уравнения в полных дифференциалах}
+\begin{definition}
+	Это уравнение
+	\[M(x,\,y)dx + N(x,\,y)dy = 0\]
+	называется уравнением в полных дифференциалах, если его левая часть является дифференциалом некоторой гладкой функции $F(x,\,y)$. Тогда это уравнение можно переписать в виде $dF(x,\,y) = 0$, так что его решение будет иметь вид
+	\[F(x,\,y) = C\]
+\end{definition}
+
+\begin{proposition}
+	Если функции $M(x,\,y)$ и $N(x,\,y)$ определены и непрерывны в некоторой односвязной области $\Omega$ и имеют в ней непрерывные частные производные по $x$ и по $y$, то изначальное уравнение будет уравнением в полных дифференциалах тогда и только тогда, когда выполняется тождество
+	\[\frac{\partial M(x,\,y)}{\partial y} \equiv \frac{\partial N(x,\,y)}{\partial x}\]
+\end{proposition}
+
+\subsubsection*{Интегрирующий множитель}
+Пусть дано уравнение в дифференциалах, которое не является уравнением в полных дифференциалах.
+
+\begin{definition}
+	Функция $\mu(x,\,y) \neq 0$ называется интегрирующим множителем для исходного уравнения, если уравнение
+	\[\mu(x,\,y)(M(x,\,y)dx + N(x,\,y)dy) = 0\]
+	является уравнением в полных дифференциалах. Отсюда следует, что функция $\mu$ удовлетворяет условию
+	\[\frac{\partial(\mu M)}{\partial y} \equiv \frac{\partial(\mu N)}{\partial x}\]
+	Это равенство даёт уравнение в частных производных первого порядка для $\mu(x,\,y):$
+	\[N\frac{\partial\mu}{\partial x} - M\frac{\partial\mu}{\partial y} = \left(\frac{\partial M}{\partial y} - \frac{\partial N}{\partial x}\right)\mu\]
+	Поделив обе части последнего уравнения на $\mu$, перепишем его в виде:
+	\[N\frac{\partial \ln\mu}{\partial x} - M\frac{\partial \ln\mu}{\partial y} = \frac{\partial M}{\partial y} - \frac{\partial N}{\partial x}\]
+\end{definition}
+
+\subsubsection*{Точные и замкнутые 1-формы, лемма Пуанкаре}
+\begin{definition}
+	Форма $\omega$ называется точной, если существует гладкая функция $F$, такая что $\omega = dF$
+\end{definition}
+
+\begin{definition}
+	Форма $\omega = F_1dx_1 + \ldots + F_mdx_m$ называется замкнутой, если
+	\[\forall k,\,i:\: \frac{\partial F_i}{\partial x_k} = \frac{\partial F_k}{\partial x_i}\]
+\end{definition}
+
+\begin{definition}
+	Область $\Omega \subseteq \mathbb{R}^m$ называется звёздной, если для некоторой точки $p \in \Omega$ и для любой другой точки $q \in \Omega$ отрезок $[p,\, q]$ полностью содержится в $\Omega$.
+\end{definition}
+
+\begin{lemma}
+	В звёздной области любая замкнутая $C^1$-гладкая дифференциальная 1-форма точна.
+\end{lemma}
+
+\begin{proof}
+	Будем считать, что точка $p$ из определения звёздной области находится в начале координат. Пусть $\omega$ -- замкнутая форма, $\omega = A_1dx_1 + \ldots A_ndx_n$.
+
+	Заметим, что для любой точки $x = (x_1,\,\ldots,\,x_n)$ и любой функции $G:\: \mathbb{R}^n \to \mathbb{R}$
+	\[G(x) - G(0) = \int_{[0,\,x]}dG = \int_0^1\left(x_1\frac{\partial G}{\partial x_1}(tx) + \ldots + x_n\frac{\partial G}{\partial x_n}(tx)\right)dt\]
+	мы параметризовали отрезок $[0,\,x] \subset \mathbb{R}^n$ параметром $t$. Пользуясь этим равенством, можно восстановить любую функцию по набору её производных.
+
+	Поэтому естественно определить $F$ таким образом:
+	\[F := \int_0^1 \sum_{i = 1}^n x_iA_i(xt)dt\]
+	Нам осталось проверить, что $\frac{\partial F}{\partial x_s} = A_s$. Действительно,
+	\begin{align*}
+		\frac{\partial F}{\partial x_s} = \int_0^1 \frac{\partial}{\partial x_s} \sum_{i = 1}^n x_iA_i(xt)dt = \int_0^1 A_s(tx) + \sum_{i = 1}^n x_i \frac{\partial}{\partial x_s}A_i(tx)dt = \\
+		= \int_0^1 A_s(tx) + \sum_{i = 1}^n x_i \frac{\partial}{\partial x_i}A_s(tx)dt = \int_0^1 \frac{d}{dt}(tA_s(tx))dt = A_s(x)
+	\end{align*}
+	Итак, $dF = A_1dx_1 + \ldots + A_ndx_n = \omega$.
+\end{proof}
+
+\subsubsection*{Гамильтоновые векторные поля на плоскости}
+\begin{definition}
+	Пусть $H:\: \mathbb{R}^2 \to \mathbb{R} \in C^1(\mathbb{R}^2)$. Тогда векторное поле
+	$\vec{v}: \begin{cases}
+			\dot{x} = -\frac{\partial H}{\partial y}(x,\,y) \\
+			\dot{y} = \frac{\partial H}{\partial x}(x,\,y)
+		\end{cases}$ называется гамильтоновым тогда и только тогда, когда $\text{div }\vec{v} = 0$
+\end{definition}
+
+\subsection{Методы понижения порядка для некоторых простейших типов дифференциальных уравнений. Уравнения первого порядка, не разрешённые относительно производной.}
+\subsubsection*{Методы понижения порядка дифференциальных уравнений.}
+\begin{enumerate}
+	\item Пусть $F(x,\, y^{(k)},\,\ldots,\,y^{(n + k)}) = 0$
+
+	      Замена: $z = y^{(k)}$, сводим к уравнению $F(x,\, z,\, z',\,\ldots,\,z^{(n)}) = 0$
+	\item Пусть $F$ явно не зависит от $x$: $F(y,\, y',\,\ldots,\,y^{(n)}) = 0$
+
+	      Замена: $y$ -- новая независимая переменная, $y' = p = p(y)$, то есть $y''_{xx} = p'_x = p'y'=p'p$
+	\item Обобщённо-однородное уравнение
+
+	      Пусть $\exists m,\,k:\: \forall \lambda > 0:\: F(\lambda x,\, \lambda^m y,\, \lambda^{m - 1}y',\,\ldots,\,\lambda^{m - n}y^{(n)}) = \lambda^k F(x,\,y,\,y',\,\ldots,\,y^{(n)})$
+
+	      Замена: $x = e^y,\, y = z(t)e^{mt}$
+	\item Однородные уравнения
+
+	      Пусть $\exists k:\: \forall \lambda > 0:\: F(x,\, \lambda y,\, \lambda y',\,\ldots,\, \lambda y^{(n)}) = \lambda^k F(x,\,y,\,y',\,\ldots,\,y^{(n)})$
+
+	      Замена: $y' = z(x)y,\, y'' = (z(x)y)' = z'y + zy' = z'y + z^2y = y(z + z^2)$
+\end{enumerate}
+
+\subsubsection*{Уравнения первого порядка, не разрешённые относительно производной}
+\begin{definition}
+	Уравнение первого порядка, не разрешённое относительно производной -- это уравнение вида
+	\[F(x,\,y,\,y') = 0\]
+	где $F(x,\,y,\,y')$ -- заданная непрерывная функция в некоторой непустой окрестности $G \subseteq \mathbb{R}^3_{(x,\,y,\,p)}$ с декартовыми прямоугольными координатами $x,\,y,\,p$.
+\end{definition}
+
+\begin{note}
+	В общем случае для решения уравнения применяется метод введения параметра, который позволяет свести решение исходного уравнения к решению некоторого уравнения первого порядка в симметричной форме.
+
+	Сам метод: положим $y' = p$ и рассмотрим систему
+	\begin{equation}
+		\label{BASE}
+		\begin{cases}
+			F(x,\,y,\,p) = 0 \\
+			dy = pdx
+		\end{cases}
+	\end{equation}
+\end{note}
+
+\begin{proposition}
+	Проектирование $\pi$ поверхности $F(x,\,y,\,p) = 0$ на плоскость $(x,\,y)$ вдоль оси $p$ переводит траектории поля в интегральные кривые системы (\ref*{BASE}).
+
+	В тех точках поверхности, где производная $\frac{\partial F}{\partial p} \neq 0$, отображение $\pi$ является локальным диффеоморфизмом.
+\end{proposition}
+
+\begin{definition}
+	Точки поверхности $F(x,\,y,\,p) = 0$, в которых производная $\frac{\partial F}{\partial p} = 0$, называются особыми точками уравнения (\ref*{BASE}).
+\end{definition}
+
+\begin{definition}
+	Множество всех особых точек называется криминантой, а её проекция на плоскость $(x,\,y)$ -- дискриминантной кривой уравнения (\ref*{BASE}).
+\end{definition}
+
+\begin{definition}
+	Решение уравнения (\ref*{BASE}) называется особым, если его интегральная кривая является дискриминантной кривой.
+\end{definition}
+
+\begin{note}
+	Решение уравнения (\ref*{BASE}) можно трактовать, как траектории движения по этой поверхности, задаваемого векторным полем
+	\begin{equation}
+		\label{PODN_POLE}
+		\begin{cases}
+			\dot{x} = \frac{\partial F}{\partial p}\\
+			\dot{y} = p\frac{\partial F}{\partial p}\\
+			\dot{p} = -\left(\frac{\partial F}{\partial x} + p\frac{\partial F}{\partial y} \right)
+		\end{cases}
+	\end{equation}
+\end{note}
+
+\begin{definition}
+	Другой важной кривой является кривая перегибов, состоящая из всех точек поверхности $F(x,\,y,\,p) = 0$, в которых третья компонента поля (\ref*{PODN_POLE}) обращается в нуль. 
+\end{definition}
+
+\begin{proposition}
+	Криминанта и кривая перегибов связаны некоторым двойственным соотношением: преобразование Лежандра $(x,\,y,\,p) \to (p,\, xp - y,\, x)$ переводит всякую интегральную кривую $\gamma$ уравнения (\ref*{BASE}) в интегральную кривую $\gamma^*$ сопряжённого уравнения $F(p,\, xp - y,\, x) = 0$
+\end{proposition}
+
+\end{document}
