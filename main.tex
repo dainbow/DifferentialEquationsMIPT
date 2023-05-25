@@ -363,19 +363,293 @@
 	\begin{equation}
 		\label{PODN_POLE}
 		\begin{cases}
-			\dot{x} = \frac{\partial F}{\partial p}\\
-			\dot{y} = p\frac{\partial F}{\partial p}\\
+			\dot{x} = \frac{\partial F}{\partial p}  \\
+			\dot{y} = p\frac{\partial F}{\partial p} \\
 			\dot{p} = -\left(\frac{\partial F}{\partial x} + p\frac{\partial F}{\partial y} \right)
 		\end{cases}
 	\end{equation}
 \end{note}
 
 \begin{definition}
-	Другой важной кривой является кривая перегибов, состоящая из всех точек поверхности $F(x,\,y,\,p) = 0$, в которых третья компонента поля (\ref*{PODN_POLE}) обращается в нуль. 
+	Другой важной кривой является кривая перегибов, состоящая из всех точек поверхности $F(x,\,y,\,p) = 0$, в которых третья компонента поля (\ref*{PODN_POLE}) обращается в нуль.
 \end{definition}
 
 \begin{proposition}
 	Криминанта и кривая перегибов связаны некоторым двойственным соотношением: преобразование Лежандра $(x,\,y,\,p) \to (p,\, xp - y,\, x)$ переводит всякую интегральную кривую $\gamma$ уравнения (\ref*{BASE}) в интегральную кривую $\gamma^*$ сопряжённого уравнения $F(p,\, xp - y,\, x) = 0$
 \end{proposition}
+
+\section{Задача Коши}
+\subsection{Прицип сжимающих отображений}
+\begin{definition}
+	Точка $x^* \in X$ называется неподвижной точкой отображения $\Phi$, если $\Phi(x^*) = x^*$.
+\end{definition}
+
+\begin{definition}
+	Оператор $\Phi$ называется сжимающим на множестве $X$, если $\exists q \in (0,\,1)$, такое что $\forall x_1,\,x_2 \in X \mapsto \|\Phi(x_1) - \Phi(x_2)\| \leq q \|x_2 - x_1\|$.
+
+	Число $q$ -- коэффициент сжатия.
+\end{definition}
+
+\begin{definition}
+	Открытый шар $U_\varepsilon(a) = \{x \in L :\: \|x - a\| < \varepsilon\}$. Замкнутый: $\overline{U}_\varepsilon(a) = \{x \in L:\: \|x-a\|\leq\varepsilon\}$
+\end{definition}
+
+\begin{theorem}
+	Теорема Банаха о неподвижной точке (принцип сижмающих отображений).
+
+	Пусть $\Phi:\: \overline{U}_\varepsilon(x_0) \to L$, причём $\Phi$ является сжимающим на $\overline{U}_r(x_0)$ с некоторым коэффициентом $q$. Тогда если выполнено условие $\|\Phi(x_0) - x_0\| \leq (1 - q)r$, то в $\overline{U}_r(x_0)$ существует единственная неподвижная точка отображения.
+\end{theorem}
+
+\begin{proof}
+	Покажем, что $\Phi(\overline{U}_r(x_0)) \subseteq \overline{U}_r(x_0)$. Пусть $x \in \overline{U}_r(x_0)$. Тогда
+
+	\begin{align*}
+		\|\Phi(x) - x_0\| = \|\Phi(x) - \Phi(x_0) + \Phi(x_0) - x_0\| \leq \|\Phi(x) - \Phi(x_0)\| + \|\Phi(x_0) - x_0\| \leq \\
+		q\|x - x_0\| + (1 - q)r \leq qr + (1 - qr) = r
+	\end{align*}
+
+	Рассмотрим последовательность $\{x_n\} \subseteq \overline{U}_r(x_0)$, такую что $x_n = \Phi(x_{n - 1})$ при $n \geq 1$. Также для удобства обозначим $\rho = \|\Phi(x_0) - x_0\| = \|x_1 - x_0\|$. Покажем, что эта последовательность фундаментальная:
+	\[\|x_2 - x_1\| = \|\Phi(x_1) - \Phi(x_0)\| \leq q \|x_1 - x_0\| \Rightarrow \ldots \Rightarrow \|x_{n + 1} - x_n\| \leq q^n\rho\]
+
+	Используем полученную оценку для того, чтобы оценить модули в сумме:
+	\[\forall p:\: \|x_{n + p} - x_n\| \leq \sum_{i = 1}^p \|x_{n + i} - x_{n + i - 1}\| \leq \rho \sum_{i = 1}^p q^{n + i - 1} = \frac{\rho q^n(1 - q^p)}{1 - q} < \frac{\rho q^n}{1 - q} \to 0\]
+
+	А так как мы в банаховом пространстве, то из фундаментальности получили сходящуюся последовательность, т.е. $\exists x^* = \lim\limits_{n \to \infty} x_n$. А так как $\overline{U}_r(x_0)$ -- замкнутый шар, значит $x^* \in \overline{U}_r(x_0)$.
+
+	Докажем, что $x^*$ является неподвижной точкой оператора $\Phi$. Воспользуемся тем, что сжимающее отображение является непрерывным.
+
+	В $x_n = \Phi(x_{n - 1})$ перейдём к пределу: $x^* = \lim\limits_{n \to \infty} = \Phi(\lim\limits_{n \to \infty} x_{n - 1}) = \Phi(x^*)$.
+
+	Докажем единственность неподвижной точки. Допустим, что существует $x^{**} \in \overline{U}_r(x_0):\: x^{**} = \Phi(x^{**})$, такое, что $x^{**} \neq x^*$.
+
+	Тогда $\|x^* - x^{**}\| = \|\Phi(x^*) - \Phi(x^**)\| \leq q\|x^* - x^{**}\|$, где $q < 1$. Получили противоречие.
+\end{proof}
+
+\subsection{Теоремы существования и единственности решения задачи Коши}
+\begin{definition}
+	Пусть $n \geq 2,\, f_1,\, \ldots,\, f_n$ -- непрерывные функции, определённые на $G \subseteq \mathbb{R}^{n + 1}_{(x,\, \vec{y})}$. Назовём нормальной системой дифференциальных уравнений первого порядка следующую систему:
+	\begin{equation}
+		\label{NORMAL_SYS}
+		\begin{cases}
+			y'_1(x) = f_1(x,\,y_1(x),\,\ldots,\,y_n(x)) = f_1(x,\,\vec{y}) \\
+			\vdots                                                         \\
+			y_n'(x) = f_n(x,\,y_1(x),\,\ldots,\,y_n(x)) = f_n(x,\,\vec{y})
+		\end{cases}
+	\end{equation}
+
+\end{definition}
+
+\begin{definition}
+	Вектор-функция $\vec{\phi}(x)$ называется решением нормальной системы (\ref*{NORMAL_SYS}) на некотором промежутке $I \subseteq \mathbb{R}$, если:
+	\begin{enumerate}
+		\item $\vec{\phi}(x) \in C^1(I)$
+		\item $\forall x \in I:\: (x,\,\vec{\phi}(x)) \in G$
+		\item $\forall x \in I:\: \vec{\phi'}(x) = \vec{f}(x,\, \vec{\phi}(x))$
+	\end{enumerate}
+
+	График решения $\vec{\phi}(x)$ в пространстве $\mathbb{R}^{n + 1}$ -- это интегральная кривая
+\end{definition}
+
+\begin{definition}
+	Задача Коши -- это
+
+	\[\begin{cases}
+			\vec{y'} = \vec{f}(x,\, \vec{y}) \\
+			\vec{y}(x_0) = \vec{y}_0
+		\end{cases}\]
+\end{definition}
+
+\begin{definition}
+	Вектор-функция $\vec{f}(x,\,\vec{y})$, определённая в области $G \subseteq \mathbb{R}^{n + 1}$ называется удовлетворяющей условию Липшица относительно $\vec{y}$ равномерно по $x$, если $\exists L > 0:\: \forall (x,\, \vec{y_1}),\, (x,\,\vec{y_2}):\: |\vec{f}(x,\,\vec{y_1}) - \vec{f}(x,\,\vec{y_2})| \leq L|\vec{y_1} - \vec{y_2}|$.
+\end{definition}
+
+\begin{lemma}
+	Вектор-функция $\vec{f}(x,\,\vec{y})$ удовлетворяет условию Липшица по $\vec{y}$ равномерно по $x$ при выполнении следующих условий:
+
+	\begin{enumerate}
+		\item $G$ -- выпуклая область в $\mathbb{R}^{n + 1}$
+		\item $\vec{f}(x,\,\vec{y}) \in C_n(G)$, то есть непрерывна от $n$ аргументов и $\forall i,\, j = \overline{1,\,n}:\: \frac{\partial f_i}{\partial y_j} \in C(G)$
+		\item $\exists K > 0:\: \forall i,\,j = \overline{1,\,n}:\: \forall (x,\, \vec{y}) \in G:\: \|\frac{\partial \vec{f_i}}{\partial y_j}(x,\,\vec{y})\| \leq K$
+	\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+	Фиксируем $i = 1,\,\ldots,\,n$. Рассмотрим $(x,\, \vec{y_1})$, где $\vec{y_1} = (y_1^1,\,\ldots,\,y_n^1)$, а также $\vec{y_2} = (y_1^2,\,\ldots,\,y_n^2)$.
+
+	\begin{align*}
+		|f_i(x,\,\vec{y_1}) - f_i(x,\,\vec{y_2})| = \||f_i(x,\, \vec{y_2} + \theta(\vec{y_1} - \vec{y_2})|_{\theta = 1}^{\theta = 2}\| = \|\int_0^1 \left[\frac{d}{d\theta}f_i(x,\,\vec{y_2} + \theta(\vec{y_1} - \vec{y_2}))\right]d\theta\| = \\
+		\|\int_0^1 \sum_{j = 1}^n \frac{\partial f_i(x,\, \vec{y_2} + \theta(\vec{y_1} - \vec{y_2}))}{\partial y_j}(y^1_j - y^2_j)d\theta\| \leq n \cdot K \cdot |\vec{y_1} - \vec{y_2}|
+	\end{align*}
+\end{proof}
+
+\subsubsection*{Теорема о существовании и единственности решения задачи Коши для системы уравнений $n$-го порядка в нормальной форме}
+
+\begin{theorem}
+	Пусть вектор-функция $\vec{f}(x,\, \vec{y})$ непрерывна в области $G$ вместе со своими производными по $y_j (j = \overline{1,\,n})$, точка $(x_0,\, \vec{y_0})$ тоже лежит в $G$. Тогда задача Коши локально разрешима единственным образом:
+	\begin{enumerate}
+		\item $\exists \delta > 0$, такое что на $[x_0 - \delta,\, x_0 + \delta]$ решение задачи Коши существует.
+		\item Решение единственно в следующем смысле:
+
+		      Если $\vec{y_1} \equiv \vec{\phi}(x)$ -- решение задачи Коши в $\delta_1$-окрестности точки $x_0$, а $\vec{y_2} \equiv \vec{\psi}(x)$ -- решение задачи Коши в $\delta_2$-окрестности точки $x_0$, то в окрестности точки $x_0$ с радиусом $\delta = \min(\delta_1,\,\delta_2):\: \vec{\phi}(x) \equiv \vec{\psi}(x)$
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	Рассмотрим множество $\overline{H_{\delta,\,r}}(x_0,\, \vec{y_0}) = \{(x,\,\vec{y}) \in G:\: x \in [x_0 - \delta,\, x_0 + \delta] \land \|\vec{y} - \vec{y_0}\| \leq r\}$. Заметим, что в силу компактности этого множества применима теорема Вейерштрасса:
+	\[\exists M > 0:\: \forall (x,\,\vec{y}) \in \overline{H_{\delta,\,r}}:\: |\vec{f}(x,\,\vec{y})| \leq M,\, \forall i,\,j = \overline{1,\,n} \: |\frac{\partial f_i}{\partial y_j}| \leq M\]
+	Рассмотрим интегральное уравнение
+	\[\vec{y}(x) = \vec{y_0} + \int_{x_0}^x \vec{f}(t,\, \vec{y}(t))dt \Leftrightarrow \vec{y} = \Phi(\vec{y})\]
+	Рассмотрим в $C_n[x_0 - \delta,\, x_0 + \delta]$ замкнутый шар $\overline{D_{\delta,\,r}}(\vec{y_0}) = \{\vec{y} \in C_n[x_0 - \delta,\, x_0 + \delta]:\: \|\vec{y} - \vec{y_0}\|_{C_n} \leq r\}$, где $\|\vec{y}\|_{C_n} = \max\limits_{1 \leq i \leq n} \sup\limits_{|x - x_0| < \delta}|y_i(x)|$.
+
+	Докажем, что существуют $\delta$ и $r$ такие, что
+	\begin{itemize}
+		\item $\Phi$ является сжимающим
+		\item Отображает шар $\overline{D_{\delta,\,r}}$ в себя
+	\end{itemize}
+	Тогда мы сможем применить теорему Банаха о сжимающем отображении. Получим единственную неподвижную точку отображения $\Leftrightarrow$ интегральное уравнение имеет единственное решение $\Leftrightarrow$ задача Коши имеет единственное решение.
+
+	Докажем, что $\Phi$ является сжимающим. Рассмотрим $\vec{y},\, \vec{z} \in \overline{D_{\delta,\,r}}$:
+	\begin{align*}
+		\|\Phi(\vec{y}) - \Phi(\vec{z})\| = \max_{1 \leq i \leq n} \sup_{|x - x_0| < \delta} |\int_{x_0}^x (f(\tau,\, \vec{y}(\tau)) - f(\tau,\, \vec{z}(\tau)))|\tau \leq  \sup_{|x - x_0| < \delta} \int_{x_0}^x L|\vec{y}(\tau) - \vec{z}(\tau)|d\tau \leq \\
+		\sup_{|x - x_0| < \delta} \int_{x_0}^x L\|\vec{y} - \vec{z}\|_{C_n} d\tau \leq \delta L \|\vec{y} - \vec{z}\|_{C_n}
+	\end{align*}
+	Положив $\delta = \frac{q}{L}$, получим требуемое.
+
+	Теперь докажем вторую часть:
+	\begin{align*}
+		\|\Phi(\vec{y_0}) - \vec{y_0}\| = \max_{1 \leq i \leq n} \sup_{|x - x_0| < \delta} |\int_{x_0}^x f_i(\tau,\, \vec{y_0})d\tau|\leq \int_{x_0}^x \|\vec{f}(\tau,\, \vec{y_0})\|_{C_n}d\tau \leq \delta M := (1 - q)r
+	\end{align*}
+	Получили, что
+	\[
+		\begin{cases}
+			q = \delta L \\
+			(1 - q)r = \delta M
+		\end{cases}
+		\Rightarrow
+		\begin{cases}
+			r - rq = \delta \\
+			r = \delta Lr + \delta M
+		\end{cases}
+		\Rightarrow
+		\delta_r := \frac{r}{M + Lr}
+	\]
+\end{proof}
+
+\begin{definition}
+	Нормальный вид уравнения с ЗК, разрешённого относительно старшей производной выглядит так:
+	\[
+		\begin{cases}
+			y^{(n)} = f(x,\,y,\,y',\,\ldots,\,y^{(n-1)}) \\
+			y(x_0) = y_0                                 \\
+			y'(x_0) = y'_0                               \\
+			\vdots                                       \\
+			y^{(n - 1)}(x_0) = y^{(n-1)}_0
+		\end{cases}
+	\]
+\end{definition}
+
+\subsubsection*{Теорема о существовании и единственности решения задачи Коши для уравнения $n$-го порядка в нормальном виде}
+\begin{theorem}
+	Пусть функция $f(x,\,y,\,p_1,\,\ldots,\,p_{n-1})$ определена и непрерывна по совокупности переменных вместе с частными производными по переменным $y,\,p_1,\,\ldots,\,p_{n - 1}$ в некоторой области $G \subseteq \mathbb{R}^{n - 1}$, и точка $(x_0,\,y_0,\,y_0',\,\ldots,\,y^{(n-1)}_0) \in G$. Тогда существует замкнутая $\delta$-окрестность точки $x_0$, в которой существует единственное решение задачи Коши.
+\end{theorem}
+
+\subsection{Теорема о продолжении решения нормальной системы дифференциальных уравнений}
+\begin{theorem}
+	Пусть $\vec{f}(x,\,\vec{y})$ определена и удовлетворяет условиям теоремы о существовании и единственности решения задачи Коши на замыкании ограниченной области $G \subseteq \mathbb{R}^{n + 1}$, тогда любое решение задачи Коши
+	\[
+		\begin{cases}
+			\vec{y'} = \vec{f}(x,\,\vec{y}) \\
+			\vec{y}(x_0) = \vec{y_0}
+		\end{cases}
+	\]
+	можно продолжить в обе стороны до выхода $\Gamma = \partial G$, то есть можно доопределить $\vec{y}(x)$ на некоторый $[x_0 - \delta,\,x_0 + \delta] \subseteq [a,\,b]$, причём $(a,\,\vec{y}(a)),\, (b,\,\vec{y}(b)) \in \Gamma$
+\end{theorem}
+
+\begin{proof}
+	\[\overline{H_r}(x_0,\, \vec{y_0}) := \{(x,\,\vec{y}) \in G:\: x \in [x_0 - \delta_r,\, x_0 + \delta_r] \land \|\vec{y} - \vec{y_0}\| \leq r\} \subseteq G\]
+	\[\rho((x_1,\,\vec{y_1}),\, (x_2,\,\vec{y_2})) := \max(|x_1 - x_2|,\, \|\vec{y_1} - \vec{y_2}\|)\]
+	Введём также расстояние от точки $\rho$ до множества $M:\: \rho(p,\, M) = \inf\limits_{q \in M} \rho(p,\,q)$
+
+	Наконец, определим $\delta_0,\, r_0$ как значения $\delta_r$ и $r$ для точки $p_0 = (x_0,\,\vec{y_0})$, для которых выполнено $\max(\delta_0,\, r_0) = \rho(p_0,\, \Gamma)$.
+
+	Рассмотрим $x_1 = x_0 + \delta_0$ и $\vec{y_1} = \vec{y}(x_1)$. Обозначим $p_1 = (x_1,\, \vec{y_1})$
+	\begin{itemize}
+		\item Если $p_1 \in \Gamma$, то продолжение вправо не требуется
+		\item Если $p_1 \not\in \Gamma$, то $p_1$ -- внутренняя точка, а значит, в ней $\exists!$ решение ЗК, причём оно совпадает с решением для $p_0$ на $[x_0,\, x_0 + \delta_0] \cap [x_1 - \delta_1,\, x_1]$. Аналогично определяем $p_2$ и т.д.
+	\end{itemize}
+
+	Полученная последовательность $\{p_k\}$ монотонно возрастает по $x$ и ограничена точками из $\Gamma$. Следовательно, по теореме Вейшерштрасса существует $b = \lim\limits_{k \ to \infty} x_k = x_0 + \sum\limits_{k = 0}^\infty \delta_k$. Объединение решений задач Коши является функцией, определённой на $\bigcup\limits_{k = 1}^\infty [x_0,\,x_k] = [x_0,\, b)$. Зафиксируем $\varepsilon > 0$ и рассмотрим $\alpha,\, \beta \in [b - \varepsilon,\, b)$. Заметим, что
+	\[\|\vec{y}(\beta) - \vec{y}(\alpha)\| = \|\int_\alpha^\beta \vec{f}(\tau,\, \vec{y}(\tau))d\tau\| \leq \int_\alpha^\beta |\vec{f}(\tau,\, \vec{y}(\tau))d\tau| \leq M\varepsilon\]
+	Значит, по критерию Коши существует $y^* = \lim\limits_{x \to b - 0} \vec{y}(x)$. Пусть $p^* = (b,\, \vec{y^*})$.
+	\[0 \leq \rho(p_k,\, \Gamma) = \max(\delta_k,\, r_k) \to 0\]
+	Значит $\rho(p^*,\, \Gamma) = \lim\limits_{k \to \infty}\rho(p_k,\, \Gamma) = 0 \Rightarrow p^* \in \Gamma$
+	\[\frac{\vec{y}(b) - \vec{y}(b - \varepsilon)}{\varepsilon} = \int_{b - \varepsilon}^b \frac{\vec{f}(\tau,\, \vec{y}(\tau))}{\varepsilon}d\tau = \frac{\vec{f}(\xi,\, \vec{y}(\xi)) \cdot \varepsilon}{\varepsilon} \to \vec{f}(b,\,\vec{y}(b))\]
+	$\vec{f}$ непрерывна вплоть до $\Gamma \Rightarrow f \in C(p^*)$. Тогда можем сделать второй переход по интегральной теореме о среднем, где $\xi \in [b - \varepsilon,\, b]$.
+
+	Таким образом, мы успешно продлили вправо, аналогично можно продлить и влево.
+\end{proof}
+
+\subsection{Непрерывная зависимость от параметров решения задачи Коши для нормальной системы дифференциальных уравнений}
+\begin{note}
+	Дифференциальные уравнения, описывающие физические процессы, всегда содержат некоторые параметры. Эти параметры в реальных задачах никогда не могут быть измерены абсолютно точно, то есть всегда измеряются с некоторой погрешностью, так что сами дифференциальные уравнения известны лишь с некоторой степенью точности. Поэтому, для того чтобы уравнения могли описывать реальные процессы, необходимо, чтобы их решения непрерывно зависели от параметров, то есть чтобы они мало менялись при малых изменениях параметров.
+\end{note}
+
+Рассмотрим задачу Коши для нормальной системы дифференциальных уравнений в векторном виде, то есть $\vec{f} = (f_1,\,\ldots,\,f_n)$:
+\begin{equation}\label{PARAM_CAUCHY}
+	\frac{d\vec{y}}{dx} = \vec{f}(x,\,\vec{y},\,\vec{\mu})\;\;\; \vec{y}(x_0,\, \vec{\mu}) = \vec{y_0}(\vec{\mu})
+\end{equation}
+
+\begin{theorem}
+	Пусть $\vec{f}(x,\,\vec{y},\,\vec{\mu})$ -- непрерывна и удовлетворяет условию Липшица равномерно по $x$ и $\vec{\mu}$, $\forall (x,\,\vec{y}) \in G \subseteq \mathbb{R}^{n + 1}$ и всех $\vec{\mu}$, таких, что $|\vec{\mu} - \vec{\mu_0}| \leq \delta$. Пусть, кроме того, $(x_0,\, \vec{y_0}) \in G$.
+
+	Тогда $\exists h > 0 \mapsto$ решение $\vec{y}(x,\,\vec{\mu})$ задачи Коши непрерывно по совокупности переменных $(x,\,\vec{\mu})$ в некоторой области $|x - x_0| \leq h,\, |\vec{\mu} - \vec{\mu_0}| \leq \delta$.
+
+	\subsection{Дифференцируемость и гладкость решения по параметрам, уравнение в вариациях}
+
+	\begin{lemma}
+		Лемма Адамара.
+
+		Пусть $F(x,\,u):\: \mathbb{R}^n_x \times \mathbb{R}^m_u \to \mathbb{R}^1$. $F \in C^p(D),\, p \geq 1,\, D$ -- область в $\mathbb{R}^{n + m}$. Тогда $\exists H_i(x,\,u,\,z) \in C^{p - 1}(D),\, i=\overline{1,\,m}$:
+		\[F(x,\,\hat{u}) - F(x,\,u) = \sum_{i = 1}^m H_i(x,\,u,\,\hat{u})\cdot(\hat{u_i} - u_i)\]
+	\end{lemma}
+
+	\begin{theorem}
+		Если при $(x,\,y) \in G$ и $|\vec{\mu} - \vec{\mu_0}| \leq \delta$ функции
+		\[f(x,\,y,\,\vec{\mu})\;\;\; \frac{\partial f}{\partial y}\;\;\; \frac{\partial f}{\partial \mu_i}\]
+		непрерывны, а также $(x_0,\,y_0) \in G$, то $\exists h > 0$, что при $|x - x_0| \leq h,\, |\vec{\mu} - \vec{\mu_0}| \leq \delta$ для решения $y = \phi(x,\, \vec{\mu})$ задачи Коши с параметров верно следующее:
+		\begin{enumerate}
+			\item $z_i(x,\,\vec{\mu}) = \frac{\partial \phi}{\partial \mu_i}$ непрерывны для указанных $x$ и $\vec{\mu}$.
+			\item Смешанные производные $\frac{\partial^2 \phi}{\partial x \partial \mu_i}$ непрерывны и не зависят от порядка дифференцирования.
+			\item Частные производные $z_i$ удовлетворяют уравнениям в вариациях по параметру $\vec{\mu}$:
+			      \[\frac{\partial z_i}{\partial x} = \frac{\partial f(x,\, \phi(x,\,\vec{\mu}),\,\vec{\mu})}{\partial x}\cdot z_i + \frac{\partial f(x,\, \phi(x,\,\vec{\mu}),\,\vec{\mu})}{\partial \mu_i}\]
+			      и начальным условиям $z_i(x_0,\,\vec{\mu}) = 0$
+		\end{enumerate}
+	\end{theorem}
+
+	\begin{proof}
+		Для $\mu \in \mathbb{R}^1$.
+
+		$\exists \frac{\partial \phi}{\partial \mu}:\: \phi(x,\,\mu)$ -- решение (\ref*{PARAM_CAUCHY}), $\phi(x,\, \mu + \Delta\mu)$ -- решение (\ref*{PARAM_CAUCHY}), где $\mu \mapsto \mu + \Delta\mu$. Введём $\psi(x,\,\mu,\,\Delta\mu) := \frac{\phi(x,\, \mu + \Delta\mu) - \phi(x,\, \mu)}{\Delta\mu},\, \forall \Delta\mu \neq 0$.
+
+		Тогда
+		\begin{align*}
+			\psi' = \frac{1}{\Delta\mu}\left[f(x,\, \phi(x,\, \mu),\, \mu + \Delta\mu) - f(x,\,\phi(x,\, \mu),\, \mu)\right] \overset{\text{л. Ада.}}{=}            \\
+			\frac{1}{\Delta\mu}\left[\sum_{i=1}^n h_i(x,\, u,\,\hat{u})(\phi(x,\, \mu + \Delta\mu) - \phi(x,\, \mu)) + h_{n + 1}(x,\,u,\,\hat{u})\Delta\mu\right] = \\
+			\sum_{i = 1}^n h_i(x,\,u,\,\hat{u})\psi(x,\,\mu,\,\Delta\mu) + h_{n + 1}(x,\,u,\,\hat{u})
+		\end{align*}
+		Таким образом,
+		\begin{equation}\label{VARI_EQ}
+			\begin{cases}
+				\psi' = H_1(x,\,\mu,\,\Delta\mu)\cdot\psi + \hat{H_2}(x,\,\mu,\,\Delta\mu) \\
+				\psi(x_0) = 0
+			\end{cases}
+		\end{equation}
+		Значит $\exists! \psi(x,\,\mu,\, \Delta\mu) = \frac{\partial \phi}{\partial \mu} \in C$
+	\end{proof}
+\end{theorem}
+
+\begin{definition}
+	Уравнение (\ref*{VARI_EQ}) называют уравнением в вариациях для решения $\phi$.
+\end{definition}
 
 \end{document}
