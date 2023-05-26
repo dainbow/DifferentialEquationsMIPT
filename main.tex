@@ -261,7 +261,7 @@
 \end{definition}
 
 \begin{definition}
-	Форма $\omega = F_1dx_1 + \ldots + F_mdx_m$ называется замкнутой, если
+	Форма $\omega = F_1dx_1 + \cdots + F_mdx_m$ называется замкнутой, если
 	\[\forall k,\,i:\: \frac{\partial F_i}{\partial x_k} = \frac{\partial F_k}{\partial x_i}\]
 \end{definition}
 
@@ -277,7 +277,7 @@
 	Будем считать, что точка $p$ из определения звёздной области находится в начале координат. Пусть $\omega$ -- замкнутая форма, $\omega = A_1dx_1 + \ldots A_ndx_n$.
 
 	Заметим, что для любой точки $x = (x_1,\,\ldots,\,x_n)$ и любой функции $G:\: \mathbb{R}^n \to \mathbb{R}$
-	\[G(x) - G(0) = \int_{[0,\,x]}dG = \int_0^1\left(x_1\frac{\partial G}{\partial x_1}(tx) + \ldots + x_n\frac{\partial G}{\partial x_n}(tx)\right)dt\]
+	\[G(x) - G(0) = \int_{[0,\,x]}dG = \int_0^1\left(x_1\frac{\partial G}{\partial x_1}(tx) + \cdots + x_n\frac{\partial G}{\partial x_n}(tx)\right)dt\]
 	мы параметризовали отрезок $[0,\,x] \subset \mathbb{R}^n$ параметром $t$. Пользуясь этим равенством, можно восстановить любую функцию по набору её производных.
 
 	Поэтому естественно определить $F$ таким образом:
@@ -287,7 +287,7 @@
 		\frac{\partial F}{\partial x_s} = \int_0^1 \frac{\partial}{\partial x_s} \sum_{i = 1}^n x_iA_i(xt)dt = \int_0^1 A_s(tx) + \sum_{i = 1}^n x_i \frac{\partial}{\partial x_s}A_i(tx)dt = \\
 		= \int_0^1 A_s(tx) + \sum_{i = 1}^n x_i \frac{\partial}{\partial x_i}A_s(tx)dt = \int_0^1 \frac{d}{dt}(tA_s(tx))dt = A_s(x)
 	\end{align*}
-	Итак, $dF = A_1dx_1 + \ldots + A_ndx_n = \omega$.
+	Итак, $dF = A_1dx_1 + \cdots + A_ndx_n = \omega$.
 \end{proof}
 
 \subsubsection*{Гамильтоновые векторные поля на плоскости}
@@ -575,7 +575,7 @@
 	Рассмотрим $x_1 = x_0 + \delta_0$ и $\vec{y_1} = \vec{y}(x_1)$. Обозначим $p_1 = (x_1,\, \vec{y_1})$
 	\begin{itemize}
 		\item Если $p_1 \in \Gamma$, то продолжение вправо не требуется
-		\item Если $p_1 \not\in \Gamma$, то $p_1$ -- внутренняя точка, а значит, в ней $\exists!$ решение ЗК, причём оно совпадает с решением для $p_0$ на $[x_0,\, x_0 + \delta_0] \cap [x_1 - \delta_1,\, x_1]$. Аналогично определяем $p_2$ и т.д.
+		\item Если $p_1 \not\in \Gamma$, то $p_1$ -- внутренняя точка, а значит, в ней $\exists$! решение ЗК, причём оно совпадает с решением для $p_0$ на $[x_0,\, x_0 + \delta_0] \cap [x_1 - \delta_1,\, x_1]$. Аналогично определяем $p_2$ и т.д.
 	\end{itemize}
 
 	Полученная последовательность $\{p_k\}$ монотонно возрастает по $x$ и ограничена точками из $\Gamma$. Следовательно, по теореме Вейшерштрасса существует $b = \lim\limits_{k \ to \infty} x_k = x_0 + \sum\limits_{k = 0}^\infty \delta_k$. Объединение решений задач Коши является функцией, определённой на $\bigcup\limits_{k = 1}^\infty [x_0,\,x_k] = [x_0,\, b)$. Зафиксируем $\varepsilon > 0$ и рассмотрим $\alpha,\, \beta \in [b - \varepsilon,\, b)$. Заметим, что
@@ -651,5 +651,402 @@
 \begin{definition}
 	Уравнение (\ref*{VARI_EQ}) называют уравнением в вариациях для решения $\phi$.
 \end{definition}
+
+\section{Линейные дифференциальные уравнения и линейные системы дифференциальных уравнений с постоянными коэффициентами}
+\subsection{Фундаментальная система решений и общее решение линейного однородного уравнения n-го порядка}
+Факты ниже перекликаются со следующим разделом
+\begin{definition}
+	Вектор-функция $\vec{y_1}(x),\,\ldots,\,\vec{y_k}(x)$, определённые на промежутке $I$, называются линейно зависимыми, если
+	\[\exists \alpha_1,\,\ldots,\,\alpha_k \in \mathbb{R}:\: \exists i:\: \alpha_i \neq 0:\: \sum_{j = 1}^k \alpha_j \vec{y_j}(x) \equiv 0\]
+\end{definition}
+
+\begin{definition}
+	Пусть $\vec{y_1}(x),\,\ldots,\,\vec{y_n}(x)$ -- вектор-функции с $n$ компонентнами. Функция
+	\[W(x) = \begin{vmatrix}
+			y_1^1(x) & y_2^1(x) & \ldots & y_n^1  \\
+			\vdots   & \vdots   & \ddots & \vdots \\
+			y_1^n(x) & y_2^n(x) & \ldots & y_n^n  \\
+		\end{vmatrix}\]
+	называется определителем Вронского для заданных вектор-функций.
+\end{definition}
+
+\begin{lemma}
+	Если вронскиан системы $\vec{y_1}(x),\,\ldots,\,\vec{y_n}(x)$ отличен от нуля хотя бы в одной точке, то все эти функции линейно независимы.
+\end{lemma}
+
+\begin{proof}
+	Пусть эти функции линейно зависимы, тогда векторы $\vec{y_1}(x),\,\ldots,\,\vec{y_n}(x)$ линейно зависимы в каждой точке $x_0$, а значит, определитель матрицы, составленной из векторов, равен нулю.
+\end{proof}
+
+\begin{lemma}
+	Если вектор-функции $\vec{y_1}(x),\,\ldots,\,\vec{y_n}(x)$ -- решения некоторой системы линейных однородных уравнений на промежутке $I$ и $\exists x_0 \in I:\: W(x_0) = 0$, то $\vec{y_1}(x),\,\ldots,\,\vec{y_n}(x)$ линейно зависимы на $I$.
+\end{lemma}
+
+\begin{proof}
+	В точке $x_0$ векторы $\vec{y_1}(x),\,\ldots,\,\vec{y_n}(x)$ линейно зависимы, значит, существует их линейная комбинация, которая обращается в ноль в точке $x_0:\: \sum\limits_{i = 1}^n c_i\vec{y_i}(x_0) = 0$.
+
+	Рассмотрим $n$ задач Коши для $\vec{y}(x_0) = \vec{y_i}(x_0)$. Рассмотрим функцию $\vec{y}(x) = \sum\limits_{i = 1}^n c_i \vec{y_i}(x)$ на $I$.
+
+	$\vec{y}(x_0) = 0 \Rightarrow$ по теореме о существовании и единственности $\vec{y}(x) \equiv 0$.
+\end{proof}
+
+\begin{definition}
+	Фундаментальная система решений для СЛДУ -- набор $n$ линейно независимых решений системы.
+\end{definition}
+
+\begin{lemma}
+	Для любой СЛДУ существует ФСР.
+\end{lemma}
+
+\begin{proof}
+	Пусть $x_0 \in [a,\,b]$ и $\{\vec{y_0^i}\}_{i = 1}^n$ -- набор числовых линейно независимых векторов. Для каждого из числовых векторов составим соответствующую задачу Коши и получим $\vec{z_1},\,\ldots,\,\vec{z_n}$ -- решения этих задач, тогда их вронскиан равен определителю матрицы, составленной из $\{\vec{y_0^i}\}_{i = 1}^n$, следовательно, он не равен нулю, и ФСР существует.
+\end{proof}
+
+\begin{lemma}
+	Любое решение СЛДУ единственным образом представимо в виде линейной комбинации векторов ФСР.
+\end{lemma}
+
+\begin{proof}
+	Пусть $x_0 \in [a,\,b],\, \vec{y}$ -- решение системы, и $\vec{y_1},\,\ldots,\,\vec{y_n}$ -- ФСР, тогда
+
+	$\vec{y_1}(x_0),\,\ldots,\,\vec{y_n}(x_0)$ линейно независимы, и $\vec{y}(x_0)$ единственным образом выражается через них. В силу единственности решения задачи Коши коэффициенты линейной комбинации окажутся одними и теми же для всех точек отрезка.
+\end{proof}
+
+\subsubsection*{Линейные однородные ДУ $n$-го порядка с постоянными коэффициентами}
+\begin{definition}
+	Линейным однородным ДУ $n$-го порядка с постоянными коэффициентами называется уравнение вида
+	\[L(y) = a_0y^{(n)} + a_1y^{(n - 1)} + \cdots + a_{n - 1}y' + a_ny = 0\]
+\end{definition}
+
+\begin{note}
+	Введём $\vec{y} = (y,\, y',\,\ldots,\,y^{(n-1)})$. Используя результаты уравнения $L(y)$ и тем, что $\vec{y'_i} = \vec{y_{i+1}}$ получим систему:
+	\[\begin{cases}
+			\vec{y_1'} = \vec{y_2} \\
+			\vec{y_2'} = \vec{y_3} \\
+			\ldots                 \\
+			\vec{y_n'} = \frac{-1}{a_0}(a_n\vec{y_1} + a_{n-1}\vec{y_2} + \cdots + a_1\vec{y_n})
+		\end{cases}\]
+
+	После введения данной системы существование и единственность решения исходного уравнения очевидна.
+
+	Для исходного уравнения можно определить вронскиан, равный вронскиану написанной выше системы.
+\end{note}
+
+\begin{note}
+	Найдём решение системы 1 в виде $y = e^{\lambda x}$
+	\[M(\lambda) = a_0\lambda^n + \cdots + a_{n-1}\lambda + a_n\]
+	\[L(e^{\lambda x}) = M(\Lambda)e^{\lambda x} = 0\]
+	Поскольку экспонента никогда не обнуляется, то единственный возможный вариант -- это $M(\lambda) = 0$. Уравнение $M(\lambda) = 0$ называется характеристическим, как и многочлен в его в левой части.
+\end{note}
+
+\begin{proposition}
+	Пусть $\lambda_1,\,\ldots,\,\lambda_n$ -- однократные корни $M(\lambda)$, тогда решения $y_i = e^{\lambda_i x}$ линейно независимы.
+\end{proposition}
+
+\begin{proof}
+	\[W(e^{\lambda_1 x},\,\ldots,\,e^{\lambda_n x}) = \begin{vmatrix}
+			e^{\lambda_1 x}                & \ldots & e^{\lambda_n x}                \\
+			\lambda_1e^{\lambda_1 x}       & \ldots & \lambda_ne^{\lambda_n x}       \\
+			\vdots                         & \ddots & \vdots                         \\
+			\lambda_1^{n-1}e^{\lambda_1 x} & \ldots & \lambda_n^{n-1}e^{\lambda_n x}
+		\end{vmatrix} = e^{(\lambda_1 + \cdots + \lambda_n)x}\begin{vmatrix}
+			1               & \ldots & 1               \\
+			\lambda_1       & \ldots & \lambda_n       \\
+			\vdots          & \ddots & \vdots          \\
+			\lambda_1^{n-1} & \ldots & \lambda_n^{n-1}
+		\end{vmatrix}\]
+	Получившийся определитель Вандермонда не будет равен нулю в силу того, что все $\lambda_i$ различны.
+
+	Если все $a_i \in \mathbb{R}$, то все комплексные корни $M(\lambda)$ разбиваются на пары сопряжённых между собой комплексных чисел. Мнимая и действительная части решений, соответствующих таким корням, сами являются решениями:
+	\[\lambda = \alpha + i\beta\;\;\; \overline{\lambda} = \alpha - i\beta\]
+	\[y_1 = e^{\lambda x}\;\;\; \overline{y_1} = e^{\overline{\lambda}x}\]
+	\[z_1 = \frac{y_1 + \overline{y_1}}{2} = e^{\alpha x}\cos \beta x\;\;\; z_2 = \frac{y_1 - \overline{y_1}}{2} = e^{\alpha x}\sin \beta x\]
+	Замена $y_1,\,\overline{y_1}$ на $z_1,\,z_2$ является корректным переходом в другой базис, а потому линейная оболочка не изменится.
+\end{proof}
+
+\begin{proposition}
+	Пусть $\lambda$ -- корень $M(\lambda)$ кратности $l$, тогда функции
+	\[e^{\lambda x},\, xe^{\lambda x},\,\ldots,\, x^{l - 1}e^{\lambda x}\] являются решениями.
+\end{proposition}
+
+\begin{lemma}
+	Пусть $y = x^se^{\lambda x}$, где $\lambda$ -- корень характеристического уравнения кратности $l$, тогда
+	\[L(x^se^{\lambda x}) = \begin{cases}
+			0,\, s < l \\
+			(b_0x^{s-l} + b_1x^{s-l-1}+\cdots+b_{s-l})e^{\lambda x},\, x \geq l
+		\end{cases}\]
+
+	\begin{proof}
+		Пусть $z,\, \lambda$ -- комплексные числа. Сначала докажем, что $(z^se^{\lambda z})^{(p)}_z = (\lambda^pe^{\lambda z})^{(s)}_\lambda$. Здесь мы используем операцию формального дифференцирования.
+
+		Докажем наше утверждение:
+		\begin{align*}
+			(z^se^{\lambda z})^{(p)}_z = \sum_{k=0}^p C_p^k (z^s)_z^{(k)}(e^{\lambda z})_z^{(p - k)} = \sum_{k = 0}^p C_p^k s(s-1)\ldots(s - (k - 1))z^{s - k}\lambda^{p-k}e^{\lambda z} = \\
+			\sum_{k = 0}^{\min(p,\,s)} C_p^k C_s^k k! z^{s - k}\lambda^{p-k}e^{\lambda z}
+		\end{align*}
+		Заметич, что $(\lambda^pe^{\lambda z})^{(s)}_\lambda$ раскроется в такое же выражение ввиду структурной симметрии.
+
+		Найдём:
+		\begin{align*}
+			L(x^se^{\lambda x}) = a_0(x^se^{\lambda x})^{(n)}_x + a_1(x^se^{\lambda x})^{(n-1)}_x + \cdots + a_n(x^se^{\lambda x}) =                                                                             \\
+			a_0 ((e^{\lambda x})^{(s)}_\lambda)^{(n)}_x + \cdots + a_n (e^{\lambda x})^{(s)}_\lambda = a_0((e^{\lambda x})^{(n)}_x)^{(s)}_\lambda + \cdots + a_n(e^{\lambda x})^{(s)}_\lambda =                  \\
+			(a_0(e^{\lambda x})^{(n)}_x + \cdots + a_ne^{\lambda x})^{(s)}_\lambda = (e^{\lambda x}M(\lambda))^{(s)}_\lambda = \sum_{k = 0}^s C_s^k(M(\lambda))_\lambda^{(k)}(e^{\lambda x})^{(s - k)}_\lambda = \\
+			\sum_{k = l}^s C_s^k(M(\lambda))_\lambda^{(k)}(e^{\lambda x})^{(s - k)}_\lambda
+		\end{align*}
+		Следовательно, $b_i = C_s^k(M(\lambda))^{(k)}_\lambda(e^{\lambda x})^{(s-k)}_\lambda$
+
+		Исходное утверждение выводится из леммы применением того факта, что корень кратности $s$ многочлена $P(x)$ является корнем $P,\,P',\,\cdots,\,P^{(s-1)}$
+	\end{proof}
+\end{lemma}
+
+\begin{definition}
+	Квазимногочлен -- произведение многочлена на экспоненту с линейной функцией в показателе.
+\end{definition}
+
+\begin{proposition}
+	$(P_m(x)e^{\lambda x})'_x = Q_m(x)e^{\lambda x}$
+\end{proposition}
+
+\begin{theorem}
+	О структуры ФСР.
+
+	Пусть $\lambda_1,\,\cdots,\, \lambda_k$ корни характеристического многочлена $M(\lambda)$ кратности $l_1,\,\cdots,\,l_k$. Тогда набор функций $x^se^{\lambda_i x}$, где $s = 0,\,\cdots,\,l_i - 1,\, i = 1,\,\cdots,\,k$ является ФСР для исходного уравнения.
+\end{theorem}
+
+\begin{proof}
+	Докажем от противного. Пусть ЛЗ, то есть
+	\[\exists \{c_i\}_{i = 1}^n \neq 0:\: \sum_{i = 1}^n c_iy_i(x) \equiv 0\]
+	Сгруппируем слагаемые при одинаковых $e^{\lambda_i x}:\: \sum\limits_{i = 1}^k e^{\lambda_i x}p_i(x) \equiv 0$. Значит, хотя бы один из многочленов $p_i(x) \neq 0$. Б.О.О. примем $p_1(x) \neq 0$, домножим равенство на $e^{-\lambda_k x}$:
+	\[e^{x(\lambda_1 - \lambda_k)}p_1(x) + e^{x(\lambda_2 - \lambda_k)}p_2(x) + \cdots + p_k(x) = 0\]
+	Продифференцируем $l_k$ раз:
+	\[e^{x(\lambda_1 - \lambda_k)}Q_1(x) + e^{x(\lambda_2 - \lambda_k)}Q_2(x) + \cdots + e^{x(\lambda_{k-1} - \lambda_k)}Q_{k-1}(x) = 0\]
+	Разделим на $e^{x(\lambda_{k-1} - \lambda_k}$ и будем повторять процедуру, пока не дойдём до
+	\[e^{x(\lambda_1 - \lambda_2)}R(x) = 0\]
+	Откуда $R(x) = 0$, но тогда $p_1(x) = 0$. Противоречие.
+\end{proof}
+
+\subsection{Линейное неоднородное уравнение n-го порядка с постоянными коэффициентами и правой частью квазимногочленом}
+\begin{definition}
+	Эти уравнения имеют вид
+	\[y^{(n)} + a_1y^{(n-1)} + \cdots + a_ny = f(x)\]
+	где $f(x)$ квазимногочлен: $f(x) = e^{\mu x}P_m(x),\, \mu \in \mathbb{C},\, P_m(x)$ -- заданный многочлен степени $m$ с комплексными коэффициентами.
+\end{definition}
+
+\begin{definition}
+	Характеристическим многочленом $L(x)$ назовём многочлен
+	\[L(x) = a_nx^n + a_{n-1}x^{n-1} + \cdots + a_0\]
+\end{definition}
+
+\begin{note}
+	Аналогично однородному случаю, существование и единственность следуют из таковых для системы
+	\[\begin{cases}
+			\vec{y_1'} = \vec{y_2}     \\
+			\vec{y_2'} = \vec{y_3}     \\
+			\cdots                     \\
+			\vec{y_{n-1}'} = \vec{y_n} \\
+			\vec{y_n'} = f - a_1y_1 - a_2y_2 - \cdots - a_ny_n
+		\end{cases}\]
+\end{note}
+
+\begin{definition}
+	Если число $\mu$ является корнем характеристического уравнения
+	\[L(\lambda) = 0\]
+	то говорят, что в уравнении резонансный случай. Если же $\mu$ не является корнем, то имеем нерезонансный случай.
+\end{definition}
+
+\begin{definition}
+	Дифференциальным многочленом назовём многочлен вида
+	\[L(D) = (D - \lambda_1)^{k_1}(D - \lambda_2)^{k_2}\cdots(D - \lambda_s)^{k_s}\]
+	где $k_i$ соответствует кратности корней характеристического уравнения, а $D$ -- оператор формального дифференцирования.
+\end{definition}
+
+\begin{note}
+	Рассмотрим ЛОУ. Покажем, что если известно некоторое решение $y_0(x)$ ЛНУ, то замена $y = z + y_0$ приводит уравнение к ЛОУ. Воспользуемся представлением левой части через дифференциальный многочлен:
+	\[L(D)y = L(D)(z + y_0) = L(D)z + L(D)y_0 = L(D)z + f(x) = f(x)\]
+	Отсюда следует, что $L(D)z = 0$, то есть решение.
+\end{note}
+
+Рассмотрим $L(D)y(x) = e^{\mu x}P_m(x)$
+\begin{proposition}
+	$(P_m(x)e^{\lambda x})'_x = Q_m(x)e^{\lambda x}$
+\end{proposition}
+
+\begin{theorem}
+	О структуре решения ЛНУ с правой частью в виде квазимногочлена.
+
+	Для рассматриваемого уравнения существует и единственно решение вида
+	\[y(x) = x^ke^{\mu x}Q_m(x)\]
+	где $Q_m(x)$ -- многочлен одинаковой с $P_m(x)$ степени $m$, а число $k$ равно кратности корня $\mu$ в уравнении $L(\lambda) = 0$ в резонансном случае и $k = 0$ в нерезонансном.
+\end{theorem}
+
+\begin{proof}
+	Если $\mu \neq 0$, то заменой $y = ze^{\mu x}$ всегда можно избавиться от $e^{\mu x}$ в правой части. В самом деле, по формуле сдвига после замены имеем, что
+	\[L(D)y = L(D)(e^{\mu x}z) = e^{\mu x}L(D + \mu)z = e^{\mu x}P_m(x)\]
+	откуда $L(D + \mu)z = P_m(x)$.
+
+	Таким образом, доказательство теоремы осталось провести для уравнения вида
+	\[L(D)y = P_m(x)\]
+
+	\begin{enumerate}
+		\item Нерезонансный случай: $L(\mu) \neq 0$. Пусть
+		      \[P_m(x) = p_mx^m + \cdots + p_0\;\;\; Q_m(x) = q_mx^m + \cdots q_0\]
+		      Если подставить и приравнять коэффициенты при одинаковых степенях $x$, получим линейную алгебраическую систему уравнений для определения неизвестных коэффициентов $q_0,\,\cdots,\,q_m$. Матрица системы треугольная с числами $a_n = L(0) \neq 0$, таким образом, все коэффициенты определяются из неё однозначно.
+		\item В резонансном случае имеем
+		      \[
+			      L(\lambda) = \lambda^k(\lambda^{n - k} + a_1\lambda^{n - k - 1} + \cdots + a_{n - k})
+		      \]
+		      Следовательно,
+		      \[
+			      L(D) = \begin{cases}
+				      D^n + a_1D^{n-1} + \cdots + a_{n - k}D^k,\, k < n \\
+				      D^n,\, k = n
+			      \end{cases}
+		      \]
+		      В первом случае замена $D^ky = z$ приводит уравнение к уравнению с нерезонансным случаем. Рассмотрим уравнение
+		      \[
+			      D^ky = \begin{cases}
+				      R_m(x),\, k < n \\
+				      P_m(x),\, k = n
+			      \end{cases}
+		      \]
+		      Взяв нулевые начальные условия для этого уравнения
+		      \[
+			      y(0) = y'(0) = \cdots = y^{(k - 1)}(0) = 0
+		      \]
+		      получим единственное решение вида
+		      \[
+			      y(x) = x^kQ_m(x)
+		      \]
+	\end{enumerate}
+\end{proof}
+
+
+\subsection{Уравнение Эйлера-Коши}
+\begin{definition}
+	Уравнением Эйлера называется уравнение вида
+	\[x^ny^{(n)} + a_1x^{n-1}y^{(n-1)} + \cdots + a_{n-1}xy' + a_ny = 0\]
+\end{definition}
+
+\begin{proposition}
+	Данное уравнение сводится к уравнению с постоянными коэффициентами при замене $x = e^t$ при $x > 0$ и $x = -e^t$ при $x < 0$.
+\end{proposition}
+
+\begin{proof}
+	Докажем индукцией по порядку:
+	\[\frac{dy}{dx} = \frac{y'_t}{x'_t} = e^{-t}y'_t \;\;\; \frac{d^2y}{dx^2} = e^{-2t}(y''_t - y'_t)\;\;\; \frac{d^ny}{dx^n} = e^{-nt}\phi(y^{(n)}_t,\,y^{(n-1)}_t,\,\cdots,\,y'_t)\]
+	Подставим найденные выражения в определение и получим уравнение вида, где $y^{(n)}$ зависит от нового параметра $t$:
+	\[b_0y^{(n)} + b_1y^{(n-1)} + b_2y^{(n-2)} + \cdots + b_{n-1}y' + b_n = 0\]
+\end{proof}
+
+\subsection{Фундаментальная система решений и общее решение нормальной линейной однородной системы уравнений}
+\begin{definition}
+	Нормальной системой дифференциальных уравнений называется система дифференциальных уравнений первого порядка, разрешённых относительно производной.
+
+	Нормальная линейная однородная система уравнений выглядит так
+	\[\vec{x}(t) = (x_1(t),\,\cdots,\,x_n(t))^T\;\;\; A_{n \times n} = (a_{ij}) \;\;\; \dot{\vec{x}} = A\vec{x}\]
+\end{definition}
+
+\begin{theorem}
+	Если $\vec{h_1},\,\cdots,\,\vec{h_n}$ -- базис из собственных векторов матрицы $A$, то $\vec{x_i} = e^{\lambda_i t}\vec{h_i}$ -- ФСР для исходной однородной системыю
+\end{theorem}
+
+\begin{proof}
+	Заметим, что $A(e^{\lambda t}\vec{h}) = e^{\lambda t}(A\vec{h}) = e^{\lambda t}\lambda\vec{h} = (e^{\lambda t}\vec{h})'$, значит собственный вектор является решением. Их линейная независимость следует из того, что, что их вронскиан в точке $t = 0$ равен определителю из координатных столбцов этого базиса, а значит не равен нулю.
+\end{proof}
+
+\subsection{Матричная экспонентна, её свойства и применение к решению нормальных линейных систем}
+\begin{definition}
+	Пусть $t$ -- действительная переменная, $A_{n \times n}$ -- комплекснозначная квадратная матрица. Матричной экспонентой называется ряд:
+	\[e^{tA} = E_{n \times n} + \sum_{k = 1}^\infty \frac{t^k}{k!}A^k\]
+	Введём обозначение частичных сумм:
+	\[S_m = E_{n \times n} + \sum_{k = 1}^m \frac{t^k}{k!}A^k\]
+\end{definition}
+
+\begin{definition}
+	Матричный ряд
+	\[e^{tA} = E_{n \times n} + \sum_{k = 1}^\infty \frac{t^k}{k!}A^k\]
+	называется сходящимся при $t_0 \in \mathbb{R}$, если степенной ряд
+	\[(S_m)_{ij} = \delta_{ij} + \sum_{k = 1}^\infty \frac{t^k}{k!}a_{ij}^{(k)}\]
+	сходится для всех $i,\,j$.
+\end{definition}
+
+\begin{lemma}
+	$\forall A \in M_{n \times n}(\mathbb{R})$ верно, что ряд $e^{tA} = E + \sum \frac{t^k}{k!}A^k$ сходится абсолютно.
+\end{lemma}
+
+\begin{proof}
+	Пусть $M = \max\limits_{i,\,j}|a_{ij}|$
+
+	Докажем по индукции: $|a_{ij}^{(k)}| \leq n^{k-1}M^k$
+	\begin{enumerate}
+		\item База $|a_{ij}^{(1)}| \leq n^0M$
+		\item $|a_{ij}^{(k)}| = |\sum_{l = 1}^n a_{il}^{(1)}a_{lj}^{(k-1)}| \leq \sum_{l = 1}^n |a_{il}^{(1)}a_{lj}^{(k-1)}| \leq n\cdot Mn^0\cdot M^{k - 1}n^{k-2} = n^{k-1}M^k$
+	\end{enumerate}
+	Рассмотрим ряд
+	\[1 + \sum_{i = 1}^\infty \frac{|t|^i}{i!}n^{i - 1}M^i\]
+	$\lim\limits_{k \to \infty} \frac{a_{k + 1}}{a_k} = \lim\limits_{k \to \infty} \frac{nM}{k + 1} = 0 \Rightarrow$ рассматриваемый ряд сходится по признаку Даламбера и мажорирует каждый компонентный ряд.
+\end{proof}
+
+\begin{lemma}
+	Формула матричного бинома.
+
+	Если $A$ и $B$ перестановочны, то $\forall n \in \mathbb{N}:\: (A + B)^n = \sum_{i = 0}^n C_n^iA^iB^{n - i}$
+\end{lemma}
+
+\begin{lemma}
+	Если $A$ и $B$ перестановочны, то $\forall t \in \mathbb{R}$:
+	\[e^{tA}e^{tB} = e^{tB}e^{tA} = e^{t(A + B)}\]
+\end{lemma}
+\begin{proof}
+	\begin{align*}
+		e^{t(A + B)} = \sum_{n = 0}^\infty \frac{t^n}{n!}(A + B)^n = \sum_{n = 0}^\infty \sum_{k + m = n} \frac{t^kA^k}{k!}\frac{t^mB^m}{m!} \overset{\text{абс.сход.}}{=} \sum_{k = 0}^\infty\sum_{m=0}^\infty \frac{t^kA^k}{k!}\frac{t^mB^m}{m!} = \\ \sum_{k = 0}^\infty\frac{t^kA^k}{k!}\sum_{m=0}^\infty\frac{t^mB^m}{m!} = e^{tB}e^{tA} = e^{tA}e^{tB}
+	\end{align*}
+\end{proof}
+
+\begin{lemma}
+	Свойства матричной экспонетны.
+
+	\begin{enumerate}
+		\item Если $S$ -- невырожденная и $A = SBS^{-1}$, то $e^{tA} = Se^{tB}S^{-1},\, \forall t \in \mathbb{R}$
+		\item $(e^{tA})'_t = Ae^{tA} = e^{tA}A$
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	\begin{enumerate}
+		\item Заметим, что $A^k = SB^kS^{-1}$:
+		\[e^{tA} = \sum_{k=0}^\infty\frac{t^k}{k!}A^k = S \left(\sum_{k = 0}^\infty \frac{t^k}{k!}B^k\right)S^{-1} = Se^{tB}S^{-1}\]
+		\item 
+		\[\frac{d}{dt}e^{tA} = \frac{d}{dt}\left(\sum_{k=0}^\infty\frac{t^k}{k!}A^k\right) = \sum_{k = 1}^\infty \frac{t^{k-1}}{(k-1)!}A^k = A \sum_{k=0}^\infty\frac{t^k}{k!}A^k = Ae^{tA}\]
+	\end{enumerate}
+\end{proof}
+
+\begin{theorem}
+	Матричная экспонентна для ФСР.
+
+	Матрица $e^{tA}$ является фундаментальной матрицей для системы линейных уравнений $\dot{\vec{x}} = A\vec{x}$
+\end{theorem}
+
+\begin{proof}
+	$(e^{tA})' = Ae^{tA}$, следовательно, каждый столбец матрицы $e^{tA}$ является решением исходной системы. Поскольку $\det e^{tA} \neq 0,\, \forall t$, то $e^{tA}$ фундаментальна.
+\end{proof}
+
+\begin{note}
+	Общее решение системы $\dot{\vec{x}} = A\vec{x}$ -- это $e^{tA}\vec{c}$, где $\vec{c}$ -- вектор констант.
+\end{note}
+
+\begin{theorem}
+	Общее решение системы $\dot{\vec{x}} = A\vec{x} + \vec{f}(t)$ задаётся следующей формулой:
+	\[\vec{x} = e^{tA}\left(\int_{t_0}^te^{-\tau A}\vec{f}(\tau)d\tau + \vec{c_0}\right)\]
+\end{theorem}
+\begin{proof}
+	Метод вариации постоянных:
+	\begin{align*}
+		\vec{x} = e^{tA}\vec{c}(t) \Rightarrow \\
+		(e^{tA}\vec{c}(t))' = Ae^{tA}\vec{c}(t) + e^{tA}\dot{\vec{c}}(t) = Ae^{tA}\vec{c}(t) + \vec{f}(t) \Rightarrow \\
+		e^{tA}\dot{\vec{c}}(t) = \vec{f}(t) \Rightarrow \\
+		\dot{\vec{c}}(t) = e^{-tA}\vec{f}(t) \Rightarrow\\
+		\vec{c}(t) = \int_{t_0}^t e^{-\tau A}\vec{f}(\tau)d\tau + \vec{c_0}
+	\end{align*}
+\end{proof}
 
 \end{document}
