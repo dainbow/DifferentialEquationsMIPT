@@ -144,7 +144,7 @@
 \end{definition}
 
 \begin{note}
-	Если же $y_k \in I_2$ решение уравнения $g(y) = 0$, то $y \equiv y_k$ -- решение дифф. уравнения
+	Если же $y_k \in C(I_2)$ решение уравнения $g(y) = 0$, то $y \equiv y_k$ -- решение дифф. уравнения
 \end{note}
 
 Если же $y(x)$ нигде не принимает значение $y_k$, то $g(y) \neq 0$, а потому мы можем делить на него. Значит, чтобы решить исходное уравнение, необходимо разделить переменные, то есть, привести уравнение к такой форме, чтобы при дифференциале $dx$ стояла функция, зависящая лишь от $x$, а при дифференциале $dy$ -- функция, зависящая от $y$.
@@ -312,7 +312,7 @@
 
 	      Пусть $\exists m,\,k:\: \forall \lambda > 0:\: F(\lambda x,\, \lambda^m y,\, \lambda^{m - 1}y',\,\ldots,\,\lambda^{m - n}y^{(n)}) = \lambda^k F(x,\,y,\,y',\,\ldots,\,y^{(n)})$
 
-	      Замена: $x = e^y,\, y = z(t)e^{mt}$
+	      Замена: $x = e^t,\, y = z(t)e^{mt}$
 	\item Однородные уравнения
 
 	      Пусть $\exists k:\: \forall \lambda > 0:\: F(x,\, \lambda y,\, \lambda y',\,\ldots,\, \lambda y^{(n)}) = \lambda^k F(x,\,y,\,y',\,\ldots,\,y^{(n)})$
@@ -355,7 +355,7 @@
 \end{definition}
 
 \begin{definition}
-	Решение уравнения (\ref*{BASE}) называется особым, если его интегральная кривая является дискриминантной кривой.
+	Решение уравнения (\ref*{BASE}) называется особым, если его интегральная кривая принадлежит дискриминантной кривой.
 \end{definition}
 
 \begin{note}
@@ -418,7 +418,7 @@
 
 	Докажем, что $x^*$ является неподвижной точкой оператора $\Phi$. Воспользуемся тем, что сжимающее отображение является непрерывным.
 
-	В $x_n = \Phi(x_{n - 1})$ перейдём к пределу: $x^* = \lim\limits_{n \to \infty} = \Phi(\lim\limits_{n \to \infty} x_{n - 1}) = \Phi(x^*)$.
+	В $x_n = \Phi(x_{n - 1})$ перейдём к пределу: $x^* = \lim\limits_{n \to \infty} x_n = \Phi\left(\lim\limits_{n \to \infty} x_{n - 1}\right) = \Phi(x^*)$.
 
 	Докажем единственность неподвижной точки. Допустим, что существует $x^{**} \in \overline{U}_r(x_0):\: x^{**} = \Phi(x^{**})$, такое, что $x^{**} \neq x^*$.
 
@@ -477,7 +477,7 @@
 	Фиксируем $i = 1,\,\ldots,\,n$. Рассмотрим $(x,\, \vec{y_1})$, где $\vec{y_1} = (y_1^1,\,\ldots,\,y_n^1)$, а также $\vec{y_2} = (y_1^2,\,\ldots,\,y_n^2)$.
 
 	\begin{align*}
-		|f_i(x,\,\vec{y_1}) - f_i(x,\,\vec{y_2})| = \||f_i(x,\, \vec{y_2} + \theta(\vec{y_1} - \vec{y_2})|_{\theta = 1}^{\theta = 2}\| = \|\int_0^1 \left[\frac{d}{d\theta}f_i(x,\,\vec{y_2} + \theta(\vec{y_1} - \vec{y_2}))\right]d\theta\| = \\
+		|f_i(x,\,\vec{y_1}) - f_i(x,\,\vec{y_2})| = \||f_i(x,\, \vec{y_2} + \theta(\vec{y_1} - \vec{y_2})|_{\theta = 0}^{\theta = 1}\| = \|\int_0^1 \left[\frac{d}{d\theta}f_i(x,\,\vec{y_2} + \theta(\vec{y_1} - \vec{y_2}))\right]d\theta\| = \\
 		\|\int_0^1 \sum_{j = 1}^n \frac{\partial f_i(x,\, \vec{y_2} + \theta(\vec{y_1} - \vec{y_2}))}{\partial y_j}(y^1_j - y^2_j)d\theta\| \leq n \cdot K \cdot |\vec{y_1} - \vec{y_2}|
 	\end{align*}
 \end{proof}
@@ -510,7 +510,7 @@
 
 	Докажем, что $\Phi$ является сжимающим. Рассмотрим $\vec{y},\, \vec{z} \in \overline{D_{\delta,\,r}}$:
 	\begin{align*}
-		\|\Phi(\vec{y}) - \Phi(\vec{z})\| = \max_{1 \leq i \leq n} \sup_{|x - x_0| < \delta} |\int_{x_0}^x (f(\tau,\, \vec{y}(\tau)) - f(\tau,\, \vec{z}(\tau)))|\tau \leq  \sup_{|x - x_0| < \delta} \int_{x_0}^x L|\vec{y}(\tau) - \vec{z}(\tau)|d\tau \leq \\
+		\|\Phi(\vec{y}) - \Phi(\vec{z})\|_{C_n} = \max_{1 \leq i \leq n} \sup_{|x - x_0| < \delta} |\int_{x_0}^x (f(\tau,\, \vec{y}(\tau)) - f(\tau,\, \vec{z}(\tau)))|d\tau \leq  \sup_{|x - x_0| < \delta} \int_{x_0}^x L|\vec{y}(\tau) - \vec{z}(\tau)|d\tau \leq \\
 		\sup_{|x - x_0| < \delta} \int_{x_0}^x L\|\vec{y} - \vec{z}\|_{C_n} d\tau \leq \delta L \|\vec{y} - \vec{z}\|_{C_n}
 	\end{align*}
 	Положив $\delta = \frac{q}{L}$, получим требуемое.
@@ -550,7 +550,7 @@
 
 \subsubsection*{Теорема о существовании и единственности решения задачи Коши для уравнения $n$-го порядка в нормальном виде}
 \begin{theorem}
-	Пусть функция $f(x,\,y,\,p_1,\,\ldots,\,p_{n-1})$ определена и непрерывна по совокупности переменных вместе с частными производными по переменным $y,\,p_1,\,\ldots,\,p_{n - 1}$ в некоторой области $G \subseteq \mathbb{R}^{n - 1}$, и точка $(x_0,\,y_0,\,y_0',\,\ldots,\,y^{(n-1)}_0) \in G$. Тогда существует замкнутая $\delta$-окрестность точки $x_0$, в которой существует единственное решение задачи Коши.
+	Пусть функция $f(x,\,y,\,p_1,\,\ldots,\,p_{n-1})$ определена и непрерывна по совокупности переменных вместе с частными производными по переменным $y,\,p_1,\,\ldots,\,p_{n - 1}$ в некоторой области $G \subseteq \mathbb{R}^{n + 1}$, и точка $(x_0,\,y_0,\,y_0',\,\ldots,\,y^{(n-1)}_0) \in G$. Тогда существует замкнутая $\delta$-окрестность точки $x_0$, в которой существует единственное решение задачи Коши.
 \end{theorem}
 
 \subsection{Теорема о продолжении решения нормальной системы дифференциальных уравнений}
@@ -578,7 +578,7 @@
 		\item Если $p_1 \not\in \Gamma$, то $p_1$ -- внутренняя точка, а значит, в ней $\exists$! решение ЗК, причём оно совпадает с решением для $p_0$ на $[x_0,\, x_0 + \delta_0] \cap [x_1 - \delta_1,\, x_1]$. Аналогично определяем $p_2$ и т.д.
 	\end{itemize}
 
-	Полученная последовательность $\{p_k\}$ монотонно возрастает по $x$ и ограничена точками из $\Gamma$. Следовательно, по теореме Вейшерштрасса существует $b = \lim\limits_{k \ to \infty} x_k = x_0 + \sum\limits_{k = 0}^\infty \delta_k$. Объединение решений задач Коши является функцией, определённой на $\bigcup\limits_{k = 1}^\infty [x_0,\,x_k] = [x_0,\, b)$. Зафиксируем $\varepsilon > 0$ и рассмотрим $\alpha,\, \beta \in [b - \varepsilon,\, b)$. Заметим, что
+	Полученная последовательность $\{p_k\}$ монотонно возрастает по $x$ и ограничена точками из $\Gamma$. Следовательно, по теореме Вейшерштрасса существует $b = \lim\limits_{k \to \infty} x_k = x_0 + \sum\limits_{k = 0}^\infty \delta_k$. Объединение решений задач Коши является функцией, определённой на $\bigcup\limits_{k = 1}^\infty [x_0,\,x_k] = [x_0,\, b)$. Зафиксируем $\varepsilon > 0$ и рассмотрим $\alpha,\, \beta \in [b - \varepsilon,\, b)$. Заметим, что
 	\[\|\vec{y}(\beta) - \vec{y}(\alpha)\| = \|\int_\alpha^\beta \vec{f}(\tau,\, \vec{y}(\tau))d\tau\| \leq \int_\alpha^\beta |\vec{f}(\tau,\, \vec{y}(\tau))d\tau| \leq M\varepsilon\]
 	Значит, по критерию Коши существует $y^* = \lim\limits_{x \to b - 0} \vec{y}(x)$. Пусть $p^* = (b,\, \vec{y^*})$.
 	\[0 \leq \rho(p_k,\, \Gamma) = \max(\delta_k,\, r_k) \to 0\]
