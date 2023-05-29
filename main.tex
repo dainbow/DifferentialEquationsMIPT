@@ -2075,7 +2075,7 @@
 			\dot{x} = y
 		\end{cases}
 	\]
-	Первым интегралом для линеаризованной системы является $I(x,\,y) = y^2 + \omega^2x^2 = const$. Для нелинеаризованного же маятника первым интегралом будет $I(x,\,y) = y^2 - \omega^2\cos x = const$. 
+	Первым интегралом для линеаризованной системы является $I(x,\,y) = y^2 + \omega^2x^2 = const$. Для нелинеаризованного же маятника первым интегралом будет $I(x,\,y) = y^2 - \omega^2\cos x = const$.
 
 	С помощью этого первого интеграла мы теперь можем построить фазовый портрет математического маятника.
 	\begin{figure}[h]
@@ -2117,7 +2117,7 @@
 \end{definition}
 
 \begin{definition}
-	Уравнение вида 
+	Уравнение вида
 	\[\sum_{i = 1}^na_i(x_1,\,\cdots,\,x_n)\frac{\partial u}{\partial x_i} = 0\]
 	называется линейным однородным уравнением в частных производных первого порядка.
 \end{definition}
@@ -2181,13 +2181,13 @@
 \begin{proof}
 	Так как $M_0$ не характеристическая точка, то $a(M_0) \neq 0$, значит в некоторой окрестности $V$ точки $M_0$ существуют $(n-1)$ независимых в точке $M_0$ первых интегралов $u_i(x),\, i =\overline{1,\,n-1}$, характеристической системы. По теореме в окрестности $V$ общее решение имеет вид
 	\[u(x) = F[u_1(x),\,\cdots,\,u_{n - 1}(x)]\]
-	где $F$ -- непрерывно дифференцируемая функция. 
-	
+	где $F$ -- непрерывно дифференцируемая функция.
+
 	Покажем, что начальное условие однозначно определяет вид функции $F$. С этой целью в окрестности $V$ рассмотрим систему уравнений
 	\[\begin{cases}
-		u_i(x) = u_i,\, i = \overline{1,\,n-1}\\
-		g(x) = 0
-	\end{cases}\]
+			u_i(x) = u_i,\, i = \overline{1,\,n-1} \\
+			g(x) = 0
+		\end{cases}\]
 	Покажем, что эту систему можно однозначно разрешить относительно $x$ в окрестности $V$. Проверим для системы выполнение условий теоремы о системе неявных функций.
 
 	Все функции в системе непрерывно дифференцируемы в окрестности $V$. Осталось показать, что якобиан
@@ -2209,5 +2209,386 @@
 	\[u(x) = \Phi[u_1(x),\,\cdots,\,u_{n-1}(x)]\]
 	является искомым и единственным решением задачи Коши в окрестности $V$.
 \end{proof}
+
+\section{Элементы вариационного исчисления}
+\subsection{Основные понятия. Простейшая задача вариационного исчисления. Необходимое условие слабого эстремума}
+\subsubsection*{Нормы для некоторых пространств}
+\begin{itemize}
+	\item \[\|f(x)\|_{C[a,\,b]} = \sup_{x \in [a,\,b]} |f(x)|\]
+	\item \[\|f(x)\|_{C^k[a,\,b]} = \sum_{i = 0}^k\max_{x \in [a,\,b]}|f^{(i)}(x)|\]
+\end{itemize}
+
+\begin{definition}
+	Пусть $(X,\,\rho)$ -- метрическое пространство, $M \subset X$. Отображение $F:\: M \to \mathbb{R}$ называется функционалом с областью определения $M$.
+\end{definition}
+
+Пусть $F(x,\,y,\,p)$ -- непрерывно дифференцируемая функция на $[a,\,b] \times \mathbb{R}^2$. Рассмотрим функционал
+\[J(y) = \int_a^b F(x,\,y,\,y')dx,\;\;\; y(a) = A,\;\;\; y(b) = B\]
+определённый на множестве $M = \{y(x) \in C^1[a,\,b]:\: y(a) = A,\, y(b) = B\}$
+
+\begin{definition}
+	Функция $\hat{y}(x) \in M$ называется слабым локальным минимумом (максимумом) функционала $J$, если
+	\[
+		\exists \varepsilon > 0:\: \forall y(x) \in M:\: \|\hat{y} - y\|_{C^1[a,\,b]} < \varepsilon \Rightarrow J(y) \geq(\leq) J(\hat{y})
+	\]
+\end{definition}
+
+\begin{definition}
+	Задача на отыскание слабого локального экстремума функционала $J$ называется простейшей вариационной задачей или задачей с закреплёнными концами.
+\end{definition}
+
+Рассмотрим две функции $y_1(x),\, y_2(x) \in M$ и определим $\eta(x) := y_1(x) - y_2(x)$. Так как концы у функций $y_1(x),\, y_2(x)$ фиксированы, то $\eta(a) = 0,\, \eta(b) = 0$. Назовём функцию $\eta$ вариацией и введём обозначение для множества допустимых вариаций:
+\[\dot{C}^1[a,\,b] := \{y(x) \in C^1[a,\,b]:\: y(a) = 0,\, y(b) = 0\}\]
+Пусть $y(x) \in M,\, \eta(x) \in \dot{C}^1[a,\,b]$. Рассмотрим семейство функций $y_\alpha(x) = y(x) + \alpha\eta(x),\, \alpha \in \mathbb{R}$. Очевидно, что $\forall \alpha:\: y_\alpha(x) \in M$. Мы хотим ввести понятие, аналогичное производной по направлению для числовых функций.
+\[J(y + \alpha \eta) = \int_a^b F[x,\, y(x) + \alpha\eta(x),\, y'(x) + \alpha\eta'(x)]dx\]
+При фиксированных $y,\,\eta$ эта функция зависит только от числового аргумента $\alpha$.
+
+\begin{definition}
+	Выражение $\frac{d}{d\alpha}J(y + \alpha\eta)|_{\alpha = 0}$, где $\eta \in \dot{C}^1[a,\,b]$ называется первой вариацией функционала $J(y)$ на функции $y(x)$ и обозначается $\partial J[y,\,\eta(x)]$.
+\end{definition}
+
+\begin{theorem}
+	Если $\hat{y}(x) \in M$ является решением простейшей вариационной задачи, то
+	\[\forall \eta(x) \in \dot{C}^1[a,\,b] \: \partial J[\hat{y},\, \eta(x)] = 0\]
+\end{theorem}
+
+\begin{proof}
+	Пусть, без ограничения общности, $\hat{y}$ -- слабый локальный минимум $J(y)$. Тогда
+	\[
+		\exists \varepsilon > 0:\: \forall y(x) \in M:\: \|\hat{y} - y\|_{C^1[a,\,b]} < \varepsilon J(y) \geq J(\hat{y})
+	\]
+	Зафиксировав $\eta(x)$, подберём $\alpha_0:\: \|\alpha_0\eta\|_{C^1} < \varepsilon$. Тогда $\forall \alpha:\: |\alpha| < \alpha_0 \:\: \|\alpha\eta\| < \varepsilon$.
+
+	Рассмотрим числовую функцию $\Phi(\alpha) := J(\hat{y} + \alpha\eta)$. Так как $\hat{y}$ -- слабый локальный экстремум $J(y)$, то
+	\[\Phi(\alpha) = J(\hat{y} + \alpha\eta) \geq J(\hat{y}) = \Phi(0)\]
+	Получается, что функция $\Phi(\alpha)$ имеет минимум в точке $\alpha = 0$, а значит $\Phi'(0) = 0$. Это и означает, что $\forall \eta(x) \in \dot{C}^1[a,\,b] :\: \partial J[\hat{y},\, \eta(x)] = 0$
+\end{proof}
+
+\begin{theorem}
+	Лемма Лагранжа (основная лемма вариационного исчисления)
+
+	Если $f(x) \in C[a,\,b]$ и $\int_a^b f(x)\eta(x)dx = 0,\, \forall \eta(x) \in \dot{C}^1[a,\,b]$, то $f(x) \equiv 0$ на $[a,\,b]$.
+\end{theorem}
+
+\begin{proof}
+	Предположим, что $f(x) \not\equiv 0$ на $[a,\,b]$. Тогда $\exists x_0 \in (a,\,b):\: f(x_0) \neq 0$. Б.О.О. $f(x_0) > 0$. Так как функция $f$ непрерывна, то $\exists \varepsilon > 0:\: \forall x \in (x_0 - \varepsilon,\, x_0 + \varepsilon) :\: f(x) > 0$.
+
+	Теперь выберем $\eta(x)$ следующим образом:
+	\[
+		\eta(x) = \begin{cases}
+			(x - (x_0 - \varepsilon))^2(x - (x_0 + \varepsilon))^2,\, x \in (x_0 - \varepsilon,\, x_0 + \varepsilon) \\
+			0,\, x \not\in (x_0 - \varepsilon,\, x_0 + \varepsilon)
+		\end{cases}
+	\]
+	Функция $\eta(x)$ имеет вид шапочки на $(x_0 - \varepsilon,\, x_0 + \varepsilon)$ и гладким образом спускается к нулю, поэтому $\eta \in \dot{C}^1[a,\,b]$.
+
+	Так как на $(x_0 - \varepsilon,\, x_0 + \varepsilon)$ и $f(x) > 0$, и $\eta(x) > 0$, то
+	\[\int_a^b f(x)\eta(x)dx = \int_{x_0 - \varepsilon}^{x_0 + \varepsilon}f(x)\eta(x)dx > 0\]
+	Получилось противоречие с условием $\int_a^b f(x)\eta(x)dx = 0,\, \forall \eta \in \dot{C}^1[a,\,b]$, а значит $f(x) \equiv 0$ на $[a,\,b]$.
+\end{proof}
+
+\begin{theorem}
+	Необходимое условие слабого локального экстремума.
+
+	Пусть $F(x,\,y,\,p)$ -- дважды непрерывно дифференцируемая функция $\forall (x,\,y,\,p) \in [a,\,b]\times\mathbb{R}^2$. Если непрерывно дифференцируемая функция $\hat{y}$ является решением простейшей вариационной задачи для $J$, то эта функция удовлетворяет уравнению Эйлера:
+	\[\frac{\partial F}{\partial y} - \frac{d}{dx}\left(\frac{\partial F}{\partial y'}\right) = 0\]
+	на $[a,\,b]$.
+\end{theorem}
+
+\begin{proof}
+	Распишем $\partial J[y,\,\eta(x)]$:
+	\begin{align*}
+		\partial J[y,\,\eta(x)] = \left[\frac{d}{d\alpha}\int_a^bF(x,\, y + \alpha\eta,\, y' + \alpha\eta')dx\right]|_{\alpha = 0} =                                                                                \\
+		\left[\int_a^b \left(\frac{\partial F(x,\,y + \alpha\eta,\, y' + \alpha\eta')}{\partial y}\eta + \frac{\partial F(x,\,y + \alpha\eta,\, y' + \alpha\eta')}{\partial y'}\eta'\right)dx\right]_{\alpha = 0} = \\
+		\int_a^b \left(\frac{\partial F(x,\,y,\,y')}{\partial y}\eta + \frac{\partial F(x,\,y,\,y')}{\partial y'}\eta'\right)dx
+	\end{align*}
+	Проинтегрируем второе подыинтегральное слагаемое по частям:
+	\[\int_a^b \frac{\partial F(x,\,y,\,y')}{\partial y'}\eta'dx = \frac{\partial F(x,\,y,\,y')}{\partial y'}\eta|_a^b - \int_a^b \frac{d}{dx}\left(\frac{\partial F(x,\,y,\,y')}{\partial y'}\right)\eta dx\]
+	Первое слагаемое равно нулю в силу ограничений на допустимое приращение $\eta$.
+
+	\[\partial J[y,\,\eta(x)] = \int_a^b \left(\frac{\partial F(x,\,y,\,y')}{\partial y} - \frac{d}{dx}\left(\frac{\partial F(x,\,y,\,y')}{\partial y'}\right)\right)\eta dx\]
+	Так как $y$ -- локальный экстремум, то по предыдущей теореме $\forall \eta \in \dot{C}^1[a,\,b]:\: \partial J[y,\,\eta(x)] = 0$:
+	\[\forall \eta(x) \in \dot{C}^1[a,\,b] :\: \int_a^b \left(\frac{\partial F(x,\,y,\,y')}{\partial y} - \frac{d}{dx}\left(\frac{\partial F(x,\,y,\,y')}{\partial y'}\right)\right)\eta dx = 0\]
+	Теперь по лемме Лагранжа получаем требуемое.
+\end{proof}
+
+\begin{definition}
+	Решение уравнения Эйлера называется экстремалью функционала $J$. Если экстремаль удовлетворяет условиям $y(a) = A,\, y(b) = B$, то она называется допустимой.
+\end{definition}
+
+\subsection{Задача со свободными концами, необходимое условие слабого экстремума}
+Рассмотрим функционал
+\[J(y) = \int_a^b F(x,\,y,\,y')dx\]
+определённый на множестве $M = \{y(x) \in C^1[a,\,b]:\: y(a) = A\}$, где $F(x,\,y,\,p)$ -- дважды непрерывно дифференцируемая функция на $[a,\,b] \times \mathbb{R}^2$. Задача отличается от простейшей вариационной задачи только тем, что один из концов не зафиксирован.
+
+\begin{definition}
+	Задача нахождения слабого локального экстремума функционала $J$ называется задачей со свободным концом.
+\end{definition}
+
+\begin{theorem}
+	Если дважды непрерывно дифференцируемая функция $\hat{y}(x) \in M$ даёт слабый локальный экстремум функционала, то на $[a,\,b]\: \hat{y}$ удовлетворяет уравнению Эйлера
+	\[\frac{\partial F}{\partial y} - \frac{d}{dx}\left(\frac{\partial F}{\partial y'}\right) = 0\]
+	и при $x = b$:
+	\[\frac{\partial F}{\partial y'}[x,\,\hat{y}(x),\, \hat{y}'(x)]|_{x = b} = 0\]
+\end{theorem}
+
+\begin{proof}
+	Рассмотрим произвольное допустимое приращение $\eta(x) \in C^1[a,\,b]:\: \eta(a) = 0$.
+
+	Пусть $\Phi(a) = J(y + \alpha\eta),\, \alpha \in \mathbb{R}$ -- непрерывно дифференцируемая функция аргумента $\alpha$; При $\alpha = 0\: \Phi(\alpha)$ имеет экстремум. Следовательно,
+	\begin{align*}
+		0 = \Phi'(0) = \frac{d}{d\alpha}J(y + \alpha\eta)|_{\alpha = 0} = \int_a^b \left(\frac{\partial F(x,\,y,\,y')}{\partial y}\eta + \frac{\partial F(x,\,y,\,y')}{\partial y'}\eta'\right)dx
+	\end{align*}
+	Проинтегрировав второе слагаемое по частям:
+	\[\int_a^b \frac{\partial F(x,\,y,\,y')}{\partial y'}\eta'dx = \frac{\partial F(x,\,y,\,y')}{\partial y'}(b)\eta(b) - \int_a^b \frac{d}{dx}\left(\frac{\partial F(x,\,y,\,y')}{\partial y'}\right)\eta dx\]
+	Тогда $\Phi'(0)$ запишется следующий образом:
+	\[\Phi'(0) = \frac{\partial F(x,\,y,\,y')}{\partial y'}(b)\eta(b) + \int_a^b \left(\frac{\partial F(x,\,y,\,y')}{\partial y} - \frac{d}{dx}\left(\frac{\partial F(x,\,y,\,y')}{\partial y'}\right)\right)\eta(x) dx\]
+	Это выполняется для любого $\eta(x) \in C^1[a,\,b]:\: \eta(a) = 0$. Что, в частности, верно и для $\eta_1(x) \in C^1[a,\,b]:\: \eta(a) = 0,\, \eta(b) = 0$. При подставлении $\eta_1(x)$ получим, что
+	\[\int_a^b \left(\frac{\partial F(x,\,y,\,y')}{\partial y} - \frac{d}{dx}\left(\frac{\partial F(x,\,y,\,y')}{\partial y'}\right)\right)\eta(x) dx = 0\]
+	Используя основную лемму вариационного исчисления, получим первое условие теоремы. Это означает, что второе слагаемое в $\Phi'(0)$ всегда равно нулю. Получаем, что для всех $\eta(x) \in C^1[a,\,b]:\: \eta(a) = 0$
+	\[\Phi'(0) = \frac{\partial F(x,\,y,\,y')}{\partial y'}(b)\eta(b) = 0\]
+	Так как можно подобрать вариацию, такую что $\eta(b) \neq 0$, то необходимым условием слабого локального экстремума является второе условие теоремы.
+\end{proof}
+
+\begin{definition}
+	Решение уравнения Эйлера называется экстремалью задачи со свободным концом. Решение уравнения Эйлера, которое удовлетворяет условию $y(a) = A$ и второму условию предыдущей теоремы, называется допустимой экстремалью.
+\end{definition}
+
+\begin{theorem}
+	Рассмотрим функционал
+	\[J(y) = \int_a^b F(x,\, y,\, y')dx\]
+	где $y(x) \in C^1[a,\,b]$ (то есть оба конца не закреплены) и $F(x,\,y,\,p)$ -- дважды непрерывно дифференцируемая функция на $[a,\,b] \times \mathbb{R}^2$.
+
+	Если $\hat{y}(x) \in C^1[a,\,b]$ даёт слабый локальный экстремум функционала $J(y)$, то $\hat{y}(x)$ удовлетворяет следующим условиям:
+	\[\frac{\partial F}{\partial y} - \frac{d}{dx}\left(\frac{\partial F}{\partial y'}\right) = 0\]
+	\[\frac{\partial F}{\partial y'}|_{x = a} = \frac{\partial F}{\partial y'}|_{x = b} = 0\]
+\end{theorem}
+
+\begin{proof}
+	Аналогично доказательству задачи с одним закреплённым концом.
+\end{proof}
+
+\subsection{Задача для функционалов, зависящих от нескольких неизвестных функций, задача для функционалов, содержащих произвольные высших порядков}
+\begin{note}
+	Функционалы, зависящие от нескольких неизвестных функций, можно интерпретировать как функционалы, зависящие от вектор-функции.
+
+	Пусть $C_n^1[a,\,b]$ -- множество непрерывно дифференцируемых вектор-функций с компонентнами $y_1(x),\,\cdots,\,y_n(x)$, определёнными на множестве $[a,\,b]$. Норма на этом пространстве вводится следующим образом:
+	\[\|\vec{y}(x)\|_{C_n^1[a,\,b]} = \max_{x \in [a,\,b]}|y(x)| + \max_{x \in [a,\,b]}|y'(x)|\]
+	Функционалы для вектор-функций определяются аналогично:
+	\[J(\vec{y}) = \int_a^bF[x,\,\vec{y}(x),\,\vec{y}'(x)]dx\]
+	где $F[x,\,\vec{y}(x),\,\vec{y}'(x)]$ -- дважды непрерывно дифференцируемая функция на $[a,\,b] \times \mathbb{R}^{2n}$.
+
+	В качестве аргументов функции $J(\vec{y})$ будем рассматривать вектор-функции из множества $M = \{\vec{y}(x) \in C_n^1[a,\,b]:\: \vec{y}(a) = \vec{A},\, \vec{y}(b) = B\}$
+\end{note}
+
+\begin{definition}
+	Функция $\hat{y} \in M$ называется слабым локальным минимумом (максимум) функционала $J$, если
+	\[\exists \varepsilon > 0:\: \forall \vec{y} \in M:\: \|\vec{y} - \hat{\vec{y}}\|_{C_n^1} < \varepsilon \: J(\vec{y}) \geq(\leq) J(\hat{\vec{y}})\]
+\end{definition}
+
+\begin{theorem}
+	Если дважды непрерывно дифференцируемая вектор-функция $\vec{y} \in M$ даёт слабый локальный экстремум функционала $J$, то $\hat{\vec{y}}$ удовлетворяет на $[a,\,b]$ системе уравнений Эйлера:
+	\[\frac{\partial F}{\partial y_i} - \frac{d}{dx}\left(\frac{\partial F}{\partial y_i'}\right) = 0,\, i = \overline{1,\,n}\]
+\end{theorem}
+
+\begin{proof}
+	Пусть $\hat{\vec{y}} = (y_1(x),\,\hat{y}_2(x),\,\cdots,\,\hat{y}_n(x))$ -- первая координата свободная, а остальные зафиксируем. Тогда $J(\vec{y}) = \tilde{J}(y_1)$ -- функционал, зависящий от одной переменной. Это является простейшей вариационной задачей, экстремум достигается при $\hat{y}_1(x)$, и необходимым условием является уравнение Эйлера для $y_1$.
+
+	Повторив эти действия для каждой координаты, получаем нужную систему.
+\end{proof}
+
+\subsubsection*{Функционалы, зависящие от производных высших порядков.}
+В этом разделе мы будем работать с функциями из пространства $C^k[a,\,b]$. На этом пространстве норму можно ввести следующим образом:
+\[\|y\|_{C^k[a,\,b]} = \max_{x \in [a,\,b]} |y(x)| + \sum_{i = 1}^k\max_{x \in [a,\,b]}|y^{(i)}(x)|\]
+Аналогично простейшей вариационной задаче введём множество допустимых вариаций:
+\[\dot{C}^k[a,\,b] = \{y \in C^k[a,\,b]:\: y^{(i)}(a) = y^{(i)}(b) = 0,\, i = \overline{1,\,k-1}\}\]
+
+\begin{lemma}
+	Если $f(x) \in C[a,\,b]$ и $\forall \eta \in \dot{C}^k[a,\,b]:\: \int_a^b f(x)\eta(x)dx = 0$, то $f(x) \equiv 0$ на $[a,\,b]$.
+\end{lemma}
+
+\begin{proof}
+	Предположим, что $f(x) \not\equiv 0$ на $[a,\,b]$. Тогда $\exists x_0 \in (a,\,b):\: f(x_0) \neq 0$. Б.О.О. $f(x_0) > 0$. Так как $f(x)$ непрерывна, то $\exists \varepsilon > 0:\: \forall x \in (x_0 - \varepsilon,\, x_0 + \varepsilon) \: f(x) > 0$.
+
+	Подберём такую вариацию:
+	\[
+		\eta(x) = \begin{cases}
+			(x - (x_0 - \varepsilon))^{2k}(x - (x_0 + \varepsilon))^{2k},\, x \in (x_0 - \varepsilon,\, x_0 + \varepsilon) \\
+			0,\; else
+		\end{cases}
+	\]
+	Можно проверить, что $\eta(x) \in \dot{C}^k[a,\,b]$. Поэтому
+	\[0 = \int_a^b f(x)\eta(x)dx = \int_{x_0 - \varepsilon}^{x_0 + \varepsilon}f(x)\eta(x)dx > 0\]
+	Получили противоречие. Получается, что $f(x) \equiv 0$ на $[a,\,b]$.
+\end{proof}
+
+\begin{definition}
+	Рассмотрим функционал
+	\[J(y) = \int_a^b F[x,\, y(x),\,\cdots,\, y^{(k)}(x)]dx\]
+	определённый на множестве $M = \{y(x) \in C^k[a,\,b]:\: y^{(i)}(a) = A_i,\, y^{(i)}(b) = B_i,\, i = \overline{1,\,k-1}\}$, где $F$ -- $(k + 1)$ раз непрерывно дифференцируемая функция.
+\end{definition}
+
+\begin{definition}
+	Скажем, что $\hat{y} \in M$ даёт слабый локальный минимум (максимум) функционала $J$, если
+	\[\exists \varepsilon > 0:\: \forall y(x) \in M:\: \|\hat{y} - y\|_{C^k} < \varepsilon \: J(y) \geq(\leq) J(\hat{y})\]
+	Пусть $y(x) \in M,\, \eta(x) \in \dot{C}^k$. При фиксированных $y(x),\,\eta(x)$ определим $\Phi(\alpha),\, \alpha \in \mathbb{R}$:
+	\[\Phi(\alpha) = J(y(x) + \alpha\eta(x)) = \int_a^b F[x,\,y + \alpha\eta,\,\cdots,\,y^{(k)} + \alpha\eta^{(k)}]dx\]
+	Аналогично простейшей вариационной задаче, если $\hat{y}$ даёт экстремум $J(y)$, то $\Phi(\alpha)$ имеет экстремум при $\alpha = 0$:
+	\[\Phi'(0) = \frac{dJ(\hat{y} + \alpha\eta)}{d\alpha}|_{\alpha = 0} = \int_a^b \left[\frac{\partial F}{\partial \hat{y}}\eta(x) + \frac{\partial F}{\partial \hat{y}'}\eta'(x) + \cdots + \frac{\partial F}{\partial \hat{y}^{(k)}}\eta^{(k)}(x)\right]dx\]
+\end{definition}
+
+\begin{definition}
+	Выражение $\Phi'(0)$, где $\eta(x) \in \dot{C}^k[a,\,b]$ называется первой вариацией функционала $J$ и обозначается $\partial J[y,\,\eta]$.
+\end{definition}
+
+\begin{theorem}
+	Необходимое условие слабого экстремума.
+
+	Пусть $\hat{y} \in M$ является $2k$ дифференцируемой функцией и даёт слабый локальный экстремум функционала $J$. Тогда на $[a,\,b] \: \hat{y}(x)$ удовлетворяет уравнению Эйлера-Пуассона:
+	\[\frac{\partial F}{\partial y} - \frac{d}{dx}\left(\frac{\partial F}{\partial y'}\right) + \frac{d^2}{dx^2}\left(\frac{\partial F}{\partial y''}\right) - \cdots + (-1)^k\frac{d^k}{dx^k}\left(\frac{\partial F}{\partial y^{(k)}}\right) = 0\]
+\end{theorem}
+
+\begin{proof}
+	Доказательство аналогично случаю с уравнению с производной первого порядка: необходимо проинтегрировать $i$-ое слагаемое подынтегральной функции первой вариации $i$ раз по частям и получить требуемое.
+\end{proof}
+
+\subsection{Изопараметрическая задача}
+Пусть функции $F(x,\,y,\,p),\, G(x,\, y,\, p) \in C^2([a,\,b] \times \mathbb{R}^2)$. Рассмотрим функционал
+\[J(y) = \int_a^b F(x,\,y,\,y')dx\]
+определённый на множестве
+\[M = \left\{y \in C^1[a,\,b]:\: y(a) = A,\, y(b) = B,\, K(y) = \int_a^b G(x,\,y,\,y')dx = l\right\}\]
+Условие $K(y) = l$ называется условием связи.
+
+\begin{definition}
+	Функция $\hat{y}(x) \in M$ называется слабым локальным минимумом (максимумом) функционала $J$, если
+	\[\exists \varepsilon > 0:\: \forall y \in M:\: \|y - \hat{y}\|_{C^1[a,\,b]} < \varepsilon \: J(y) \geq(\leq) J(\hat{y})\]
+\end{definition}
+
+\begin{definition}
+	Изопериметрической задачей называется задача нахождения слабого локального экстремума функционала $J$.
+\end{definition}
+
+\begin{note}
+	Изопериметрическая задача похожа на задачу поиска условного экстремума числовых функций. Так же, как и для условного экстремума числовых функций, определим лагранжиан:
+	\[L(x,\,y,\,\lambda) = F(x,\,y,\,y') + \lambda G(x,\,y,\,y'),\, \lambda \in \mathbb{R}\]
+	$\lambda$ называется множителем Лагранжа.
+
+	Также при формулировке необходимого условия потребуем, чтобы
+	\[\partial K(y,\,\eta) = \int_a^b \left(\frac{\partial G}{\partial y}\eta(x) + \frac{\partial G}{\partial y'}\eta'(x)\right)dx,\, \forall \eta \in \dot{C}^1[a,\,b]\]
+	не равнялась тождественному нулю, так как иначе экстремум функционала может равняться $l$, а значит условию связи будет удовлетворять только одна функция, и изопериметрическая задача будет несодержательной.
+\end{note}
+
+\begin{theorem}
+	Необходимое условие.
+
+	Пусть дважды дифференцируемая функция $\hat{y} \in M$ является решением изопериметрической задачи и пусть $\partial K(\hat{y},\, \eta) \not\equiv 0$ для всех $\eta \in \dot{C}^1[a,\,b]$. Тогда найдётся такое значение $\lambda \in \mathbb{R}$, что на $[a,\,b]$ функция $\hat{y}$ будет удовлетворять уравнению Эйлера
+	\[\frac{\partial L}{\partial y} - \frac{d}{dx}\left(\frac{\partial L}{\partial y'}\right) = 0\]
+\end{theorem}
+
+\begin{proof}
+	Из условия теоремы следует, что $\exists \eta_0(x) \in \dot{C}^1[a,\,b]$ такая, что $\partial K[\hat{y},\, \eta_0(x)] \neq 0$.
+
+	Рассмотрим следующие функции:
+	\[u = \phi(\alpha,\, \beta) = J[\hat{y}(x) + \alpha\eta(x) + \beta\eta_0(x)],\, \alpha,\,\beta \in \mathbb{R}\]
+	\[v = \psi(\alpha,\, \beta) = K[\hat{y}(x) + \alpha\eta(x) + \beta\eta_0(x)],\, \alpha,\,\beta \in \mathbb{R}\]
+	Используя теоремы о непрерывности и дифференцируемости собственных интегралов, зависящих от параметра, получаем:
+	\[\phi(0,\,0) = J(\hat{y}),\;\;\; \frac{\partial \phi}{\partial \alpha}(0,\,0) = \partial J[\hat{y}(x),\, \eta(x)],\;\;\; \frac{\partial \phi}{\partial \beta}(0,\,0) = \partial J[\hat{y}(x),\, \eta_0(x)]\]
+	\[\psi(0,\,0) = K(\hat{y}),\;\;\; \frac{\partial \psi}{\partial \alpha}(0,\,0) = \partial K[\hat{y}(x),\, \eta(x)],\;\;\; \frac{\partial \psi}{\partial \beta}(0,\,0) = \partial K[\hat{y}(x),\, \eta_0(x)]\]
+	Далее можно расписать все первые вариации подобным образом:
+	\[\partial J[y,\, \eta(x)] = \int_a^b \left[\frac{\partial F}{\partial y}\eta(x) + \frac{\partial F}{\partial y'}\eta'(x)\right]dx\]
+	Покажем, что якобиан
+	\[\frac{\partial(\phi,\, \psi)}{\partial(\alpha,\, \beta)} \equiv 0,\, \forall \eta(x) \in \dot{C}^1[a,\,b]\]
+	Предположим, что $\exists \eta_1(x) \in \dot{C}^1[a,\,b]$ такое, что $\frac{\partial(\phi,\, \psi)}{\partial(\alpha,\, \beta)} \neq 0$. Это означает, что существует окрестность точки $(0,\,0)$, в которой система
+	\[\begin{cases}
+			u = \phi(\alpha,\, \beta) \\
+			v = \psi(\alpha,\, \beta)
+		\end{cases}\]
+	разрешима относительно $\alpha,\, \beta$.
+
+	Б.О.О. $\hat{y}$ доставляет минимум функционала. Тогда рассмотрим такую систему:
+	\[
+		\begin{cases}
+			\phi(\alpha,\,\beta) = \phi(0,\,0) - \varepsilon,\, \varepsilon > 0 \\
+			\psi(\alpha,\,\beta) = \psi(0,\,0)
+		\end{cases}
+	\]
+	По доказанному, решение этой системы существует и единственно -- обозначим его $(\hat{\alpha},\, \hat{\beta})$. Тогда у нас выполнено
+	\[\phi(\hat{\alpha},\, \hat{\beta}) = \phi(0,\,0) - \varepsilon = J(\hat{y}) - \varepsilon,\;\;\;\; \psi(\hat{\alpha},\,\hat{\beta}) = \psi(0,\,0) = K(\hat{y}) = l\]
+	Это значит, что существует функция $\hat{y}(x) + \hat{\alpha}\eta_1(x) + \hat{\beta}\eta_0(x)$ такая, что
+	\[J(\hat{y}(x) + \hat{\alpha}\eta_1(x) + \hat{\beta}\eta_0(x)) = J(\hat{y}) - \varepsilon < J(\hat{y}),\;\;\; K(\hat{y}(x) + \hat{\alpha}\eta_1(x) + \hat{\beta}\eta_0(x)) = l\]
+	Это противоречит тому, что $\hat{y}$ даёт слабый локальный минимум Таким образом, мы доказали, что
+	\[\frac{\partial(\phi,\, \psi)}{\partial(\alpha,\, \beta)} \equiv 0,\, \forall \eta(x) \in \dot{C}^1[a,\,b]\]
+	Распишем этот якобиан:
+	\[\frac{\partial(\phi,\, \psi)}{\partial(\alpha,\, \beta)}|_{\alpha = 0,\, \beta = 0} = \begin{vmatrix}
+			\partial J(\hat{y},\,\eta)   & \partial K(\hat{y},\,\eta)   \\
+			\partial J(\hat{y},\,\eta_0) & \partial K(\hat{y},\,\eta_0)
+		\end{vmatrix} \equiv 0,\, \forall \eta(x) \in \dot{C}^1[a,\,b]\]
+	Положим $\lambda = -\frac{\partial J(\hat{y},\,\eta_0)}{\partial K(\hat{y},\, \eta_0)}$ (здесь мы пользуемся тем, что $\partial K(\hat{y},\, \eta_0) \neq 0$). Тогда получим, что
+	\[\partial J(\hat{y},\,\eta_0) + \lambda\cdot\partial K(\hat{y},\, \eta_0) \equiv 0,\, \forall \eta(x) \in \dot{C}^1[a,\,b]\]
+	Расписав первые вариации, получаем:
+	\begin{align*}
+		\partial J(y,\,\eta_0) + \lambda\cdot\partial K(y,\, \eta_0) = \int_a^b \left(\frac{\partial F}{\partial y}\eta + \frac{\partial F}{\partial y'}\eta'\right)dx + \lambda\int_a^b\left(\frac{\partial G}{\partial y}\eta + \frac{\partial G}{\partial y'}\eta'\right)dx = \\
+		= \int_a^b \left[\left(\frac{\partial F}{\partial y} + \lambda\frac{\partial G}{\partial y}\right)\eta + \left(\frac{\partial F}{\partial y'} + \lambda\frac{\partial G}{\partial y'}\right)\eta'\right]dx = 0
+	\end{align*}
+	Проинтегрируем слагаемое с $\eta'$ по частям, воспользовавшись тем, что $\eta(a) = \eta(b) = 0$ и равенствами $\frac{\partial L}{\partial y} = \frac{\partial F}{\partial y} + \lambda\frac{\partial G}{\partial y},\, \frac{\partial L}{\partial y'} = \frac{\partial F}{\partial y'} + \lambda\frac{\partial G}{\partial y'}$:
+	\[\int_a^b \left[\frac{\partial L}{\partial y} - \frac{d}{dx}\left(\frac{\partial L}{\partial y'}\right)\right]\eta(x)dx = 0,\, \forall \eta(x) \in \dot{C}^1[a,\,b]\]
+	Используя основную лемму вариационного исчисления, получаем уравнение из условия теоремы.
+\end{proof}
+
+\subsection{Геодезические как экстремали функционалов длины и действия, связь между функционалами и их экстремалями.}
+Пусть $E^n$ -- евклидово $n$-мерное пространство с прямоугольными координатами $x_1,\,\cdots,\,x_n$.
+
+На этом пространстве действует теорема Пифагова:
+\[ds^2 = dx_1^2 + \cdots + dx_n^2\]
+$S \subseteq E^n$ -- двумерная поверхность, которую можно задать параметрически:
+\[X_i = r_i(x,\,y),\, i = \overline{1,\,n}\]
+где $r_i \in C^\infty(D),\, D \subseteq \mathbb{R}^2_{(x,\,y)}$, а также $\text{rg }\|\frac{\partial(r_1,\,\cdots,\,r_n)}{\partial(x,\,y)}\| = 2,\, \forall (x,\, y) \in D$.
+
+$\tilde{\gamma} \subseteq \mathbb{R}^2_{(x,\,y)}$ -- параметрическая кривая:
+\[
+	\begin{cases}
+		x = \phi(t) \\
+		y = \psi(t)
+	\end{cases}
+\]
+где $t \in I \subseteq \mathbb{R}^1$ и $\text{rg }\|\frac{\partial(x,\,y)}{\partial t}\| = 1$.
+
+Тогда, чтобы задать кривую $\gamma$ на двумерной поверхности $S$ можно использовать следующую формулу:
+\[X_i = r_i(\phi(t),\,\psi(t)),\, i = \overline{1,\,n}\]
+
+\begin{definition}
+	Функционалом длины называется функционал вида
+	\[J_l(\gamma) = \int_\gamma |\vec{v}|d\gamma\]
+	где $\vec{v}(t) = (v_1(t),\,\cdots,\,v_n(t))$ на самом деле равно
+	\[v_i(t) = \frac{dx_i}{dt} = \frac{\partial r_i}{\partial x}\dot{\phi}(t) + \frac{\partial r_i}{\partial y}\dot{\psi}(t)\]
+\end{definition}
+
+Преобразуем рассматриваемый функционал:
+\[J_l(\gamma) = \int_I\sqrt{\sum_{i = 1}^n \left(\frac{\partial r_i}{\partial x}\dot{\phi}(t) + \frac{\partial r_i}{\partial y}\dot{\psi}(t)\right)^2} dt = \int_I \sqrt{g_{11}\dot{\phi}^2 + 2g_{12}\dot{\phi}\dot{\psi} + g_{22}\dot{\psi}^2}dt\]
+Где
+\[g_{11} = \langle\frac{\partial r}{\partial x},\, \frac{\partial r}{\partial x}\rangle\;\;\;\;\; g_{22} = \langle \frac{\partial r}{\partial y},\, \frac{\partial r}{\partial y}\rangle\;\;\;\;\; g_{12} = g_{21} = \langle\frac{\partial r}{\partial x},\, \frac{\partial r}{\partial y}\rangle\]
+
+\begin{definition}
+	Введём понятие $G(\dot{\phi},\,\dot{\psi}) := g_{11}\dot{\phi}^2 + 2g_{12}\dot{\phi}\dot{\psi} + g_{22}\dot{\psi}^2$ -- первая квадратичная форма поверхности.
+\end{definition}
+
+\begin{definition}
+	Геодезические -- это экстремали функционала длины
+	\[J_l(x(t),\,y(t)) = \int_I\sqrt{G(\dot{x},\,\dot{y})}dt\]
+\end{definition}
+
+\begin{definition}
+	Функционалом действия называется функционал вида
+	\[J_a(x(t),\,y(t)) = \int_I G(\dot{x},\,\dot{y})dt\]
+\end{definition}
+
+\begin{note}
+	Можно сказать, что геодезические -- это экстремали функционала действия. 
+	
+	Будет ли это определение совпадать с предыдущим? Не совсем -- первое определение инвариантно относительно параметризации кривой, когда второе -- нет.
+
+	Иными словами, определение через функционал длины покрывает все параметризации экстремалей, когда определение через функционал действия "увидит" только экстремали параметризованные должным образом.
+\end{note}
+
 
 \end{document}
