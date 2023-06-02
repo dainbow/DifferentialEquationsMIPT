@@ -385,6 +385,38 @@
 	Криминанта и кривая перегибов связаны некоторым двойственным соотношением: преобразование Лежандра $(x,\,y,\,p) \to (p,\, xp - y,\, x)$ переводит всякую интегральную кривую $\gamma$ уравнения (\ref*{BASE}) в интегральную кривую $\gamma^*$ сопряжённого уравнения $F(p,\, xp - y,\, x) = 0$
 \end{proposition}
 
+\begin{example}
+	Уравнение Клеро.
+
+	\[y = xy' + \psi(y')\]
+
+	Сведём к указанной выше системе
+	\[
+		\begin{cases}
+			xp - y + \psi(p) = 0\\
+			dy = pdx
+		\end{cases}
+	\]
+	Применим преобразование Лежандра
+	\[
+		\begin{cases}
+			\hat{y} + \psi(\hat{x}) = 0\\
+			d\hat{y} = \hat{p}d\hat{x}
+		\end{cases}	
+	\]
+	Взяв дифференциал первого уравнения, и подставив известное соотношение для $d\hat{y}$, получим:
+	\[
+		d\hat{y} = -\psi'(\hat{x})d\hat{x} = \hat{p}d\hat{x} \Rightarrow 
+	\left[
+	\begin{gathered}
+		\hat{x} = C\\
+		\hat{p} = -\psi'(\hat{x})
+	\end{gathered}
+	\right.
+	\]
+	Подставив полученные соотношение в сопряжённое уравнение и произведя обратное преобразование Лежандра, получим интегральные кривые исходного уравнения.
+\end{example}
+
 \section{Задача Коши}
 \subsection{Прицип сжимающих отображений}
 \begin{definition}
@@ -1548,7 +1580,7 @@
 			            \item $c_1 > 0,\, c_2 = 0$, причём $\zeta_1 \to +0,\, t \to +\infty$
 			            \item $c_1 = 0,\, c_2 > 0$, причём $\zeta_2 \to +0,\, t \to +\infty$
 			            \item $c_1 > 0,\, c_2 > 0$, то
-			                  \[e^t = \left(\frac{\zeta_1}{c_1}\right)^{\frac{1}{\lambda_1}} \Rightarrow \zeta_2 = c\zeta_1^\alpha,\;\; c = c_2 \cdot c_1^{-\frac{\lambda_2}{\lambda_1}},\;\; \alpha = \frac{\lambda_2}{\lambda_1} > 1\]
+			                  \[\left(\frac{\zeta_2}{c_2}\right)^{\frac{1}{\lambda_2}} = e^t = \left(\frac{\zeta_1}{c_1}\right)^{\frac{1}{\lambda_1}} \Rightarrow \zeta_2 = c\zeta_1^\alpha,\;\; c = c_2 \cdot c_1^{-\frac{\lambda_2}{\lambda_1}},\;\; \alpha = \frac{\lambda_2}{\lambda_1} > 1\]
 			                  В этом случае траектории являются кривыми типа ветвей параболы, касающихся в пределе при $t \to +\infty$ оси $\zeta_1$ в начале координат
 		            \end{itemize}
 		            В целом, в этом случае получаем семейство фазовых траекторий типа ветвей параболы и пять специальных траекторий: положение равновесия $x = 0$ и четыре полуоси осей координат $\zeta_1,\,\zeta_2$. В этом случае положение равновесия $x = 0$ называется \textbf{устойчивым узлом} системы.
@@ -1825,7 +1857,7 @@
 	Четаева о неустойчивости.
 
 	Если существует функция $V(x) \in C^1(U_1)$ такая, что
-	\[V(x) > 0,\;\;\;\;\; \mathring{V}(x) > 0,\, \forall x \in U,\;\;\; U \subset U_1\]
+	\[\mathring{V}(x) > 0,\, \forall x \in U_1 \;\;\;\;\; U := \{ x \in U_1 \:| V(x) > 0\}\]
 	где все точки $x^* \in U_1$, в которых $V(x^*) = 0$ -- граничные точки $U$, то положение равновесие $x = 0$ неустойчиво.
 \end{theorem}
 
@@ -2245,10 +2277,10 @@
 	\[\frac{\partial g(M_0)}{\partial x_j} = \sum_{i = 1}^{n-1}c_i\frac{\partial u_i(M_0)}{\partial x_j},\, \forall j = \overline{1,\,n}\]
 	Поэтому
 	\begin{align*}
-		\overset{`}{g}(M_0) = \sum_{j = 1}^n a_j(M_0)\frac{\partial g(M_0)}{\partial x_j} = \sum_{j = 1}^n a_j(M_0)\sum_{i = 1}^{n-1}c_i\frac{\partial u_i(M_0)}{\partial x_j} = \\
-		\sum_{i = n-1}^n c_i \sum_{j = 1}^{n-1} a_j(M_0)\frac{\partial u_i(M_0)}{\partial x_j} = \sum_{i = 1}^{n-1}c_i\overset{`}{u}_i(M_0) = 0
+		\mathring{g}(M_0) = \sum_{j = 1}^n a_j(M_0)\frac{\partial g(M_0)}{\partial x_j} = \sum_{j = 1}^n a_j(M_0)\sum_{i = 1}^{n-1}c_i\frac{\partial u_i(M_0)}{\partial x_j} = \\
+		\sum_{i = n-1}^n c_i \sum_{j = 1}^{n-1} a_j(M_0)\frac{\partial u_i(M_0)}{\partial x_j} = \sum_{i = 1}^{n-1}c_i\mathring{u}_i(M_0) = 0
 	\end{align*}
-	С другой стороны, $\overset{`}{g}(M_0) \neq 0$, так как по условию теоремы $M_0 \in \gamma$ не является характеристической точкой уравнения. Противоречие.
+	С другой стороны, $\mathring{g}(M_0) \neq 0$, так как по условию теоремы $M_0 \in \gamma$ не является характеристической точкой уравнения. Противоречие.
 
 	Поэтому в окрестности $V$ выполнены все условия теоремы о неявной функции и система уравнений допускает в окрестности $V$ единственное непрерывно дифференцируемое решение $x = \omega(u_1,\,\cdots,\,u_{n-1})$.
 
@@ -2573,10 +2605,10 @@
 			\partial J(\hat{y},\,\eta_0) & \partial K(\hat{y},\,\eta_0)
 		\end{vmatrix} \equiv 0,\, \forall \eta(x) \in \dot{C}^1[a,\,b]\]
 	Положим $\lambda = -\frac{\partial J(\hat{y},\,\eta_0)}{\partial K(\hat{y},\, \eta_0)}$ (здесь мы пользуемся тем, что $\partial K(\hat{y},\, \eta_0) \neq 0$). Тогда получим, что
-	\[\partial J(\hat{y},\,\eta_0) + \lambda\cdot\partial K(\hat{y},\, \eta_0) \equiv 0,\, \forall \eta(x) \in \dot{C}^1[a,\,b]\]
+	\[\partial J(\hat{y},\,\eta) + \lambda\cdot\partial K(\hat{y},\, \eta) \equiv 0,\, \forall \eta(x) \in \dot{C}^1[a,\,b]\]
 	Расписав первые вариации, получаем:
 	\begin{align*}
-		\partial J(y,\,\eta_0) + \lambda\cdot\partial K(y,\, \eta_0) = \int_a^b \left(\frac{\partial F}{\partial y}\eta + \frac{\partial F}{\partial y'}\eta'\right)dx + \lambda\int_a^b\left(\frac{\partial G}{\partial y}\eta + \frac{\partial G}{\partial y'}\eta'\right)dx = \\
+		\partial J(y,\,\eta) + \lambda\cdot\partial K(y,\, \eta) = \int_a^b \left(\frac{\partial F}{\partial y}\eta + \frac{\partial F}{\partial y'}\eta'\right)dx + \lambda\int_a^b\left(\frac{\partial G}{\partial y}\eta + \frac{\partial G}{\partial y'}\eta'\right)dx = \\
 		= \int_a^b \left[\left(\frac{\partial F}{\partial y} + \lambda\frac{\partial G}{\partial y}\right)\eta + \left(\frac{\partial F}{\partial y'} + \lambda\frac{\partial G}{\partial y'}\right)\eta'\right]dx = 0
 	\end{align*}
 	Проинтегрируем слагаемое с $\eta'$ по частям, воспользовавшись тем, что $\eta(a) = \eta(b) = 0$ и равенствами $\frac{\partial L}{\partial y} = \frac{\partial F}{\partial y} + \lambda\frac{\partial G}{\partial y},\, \frac{\partial L}{\partial y'} = \frac{\partial F}{\partial y'} + \lambda\frac{\partial G}{\partial y'}$:
