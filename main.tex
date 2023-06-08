@@ -393,26 +393,26 @@
 	Сведём к указанной выше системе
 	\[
 		\begin{cases}
-			xp - y + \psi(p) = 0\\
+			xp - y + \psi(p) = 0 \\
 			dy = pdx
 		\end{cases}
 	\]
 	Применим преобразование Лежандра
 	\[
 		\begin{cases}
-			\hat{y} + \psi(\hat{x}) = 0\\
+			\hat{y} + \psi(\hat{x}) = 0 \\
 			d\hat{y} = \hat{p}d\hat{x}
-		\end{cases}	
+		\end{cases}
 	\]
 	Взяв дифференциал первого уравнения, и подставив известное соотношение для $d\hat{y}$, получим:
 	\[
-		d\hat{y} = -\psi'(\hat{x})d\hat{x} = \hat{p}d\hat{x} \Rightarrow 
-	\left[
-	\begin{gathered}
-		\hat{x} = C\\
-		\hat{p} = -\psi'(\hat{x})
-	\end{gathered}
-	\right.
+		d\hat{y} = -\psi'(\hat{x})d\hat{x} = \hat{p}d\hat{x} \Rightarrow
+		\left[
+		\begin{gathered}
+			\hat{x} = C\\
+			\hat{p} = -\psi'(\hat{x})
+		\end{gathered}
+		\right.
 	\]
 	Подставив полученные соотношение в сопряжённое уравнение и произведя обратное преобразование Лежандра, получим интегральные кривые исходного уравнения.
 \end{example}
@@ -772,7 +772,7 @@
 			\vec{y'}_n = \frac{-1}{a_0}(a_n\vec{y}_1 + a_{n-1}\vec{y}_2 + \cdots + a_1\vec{y}_n)
 		\end{cases}\]
 
-	Тогда задача Коши для исходного уравнения 
+	Тогда задача Коши для исходного уравнения
 	\[y(x_0) = y_0,\,\cdots,\,y^{(n-1)}(x_0) = y^{(n-1)}_0\]
 	сводится к задаче Коши для новой системы:
 	\[\vec{y}(x_0) = (y_0,\,\cdots,\,y^{(n-1)}_0)\]
@@ -1202,9 +1202,9 @@
 
 \begin{proof}
 	Фиксируем $x_0 \in I$ и $n$ линейно независимых числовых векторов $y_1^0,\,\cdots,\,y_n^0$ с $n$ компонентами. Обозначим через $\phi_j(x)$ решение данной системы, удовлетворяющее начальному условию $y_j(x_0) = y_j^0$. По теореме о существовании и единственности каждое такое решение существует и единственно на $I$. Но тогда система решений $\phi_j(x)$ образует фундаментальную систему решений, так как она была построена из линейно независимых числовых векторов:
-	
+
 	Допустим, решения получились ЛЗ, несмотря на то, что построены из ЛНЗ векторов. Тогда, в силу отрицания (а не обратного, что можно легко перепутать) леммы (\ref{ZAVIS_SLEDST}) получаем, что во всех точках вектора ЛЗ, а это противоречие с точкой $x_0$.
-	
+
 	Точку $x_0 \in I$ и векторы можно выбирать бесконечным числом способов.
 \end{proof}
 
@@ -1502,7 +1502,7 @@
 \end{theorem}
 
 \begin{proof}
-	Преобразованием $t \mapsto t + C$ мы сдвигаем интегральную кривую параллельно оси $t$, значит её проекция на $x$ вдоль оси $t$ не изменитс.
+	Преобразованием $t \mapsto t + C$ мы сдвигаем интегральную кривую параллельно оси $t$, значит её проекция на $x$ вдоль оси $t$ не изменится.
 \end{proof}
 
 \begin{theorem}
@@ -1918,11 +1918,11 @@
 		      \begin{enumerate}
 			      \item $\lambda_1 < 0,\, \lambda_2 < 0$
 
-			            Возьмём в качестве функции Ляпунова $F(x,\,y) = \frac{x^2 + y^2}{2}$. Её производная в силу данной системы равна: 
-									\begin{align*}
-										\mathring{F}(x,\,y) = x(\lambda_1x + \omega_1(x,\,y)) + y(\lambda_2y + \omega_2(x,\,y)) = \\
-										= \lambda_1x^2 + \lambda_2y^2 + \Omega(x,\,y),\, \Omega = x\omega_1 + y\omega_2
-									\end{align*}
+			            Возьмём в качестве функции Ляпунова $F(x,\,y) = \frac{x^2 + y^2}{2}$. Её производная в силу данной системы равна:
+			            \begin{align*}
+				            \mathring{F}(x,\,y) = x(\lambda_1x + \omega_1(x,\,y)) + y(\lambda_2y + \omega_2(x,\,y)) = \\
+				            = \lambda_1x^2 + \lambda_2y^2 + \Omega(x,\,y),\, \Omega = x\omega_1 + y\omega_2
+			            \end{align*}
 			            Очевидно, что $\Omega \in C^2(D),\, \Omega$ -- 2-плоская в $x = 0,\, y = 0$. Тогда, пользуясь теоремой из матана, $x = 0,\, y = 0$ -- строгий локальный максимум. Значит, условие теоремы Ляпунова выполняется и положение равновесия устойчиво.
 
 			      \item \begin{itemize}
@@ -1933,12 +1933,12 @@
 
 				                  Возьмём в качестве функции Четаева $F(x,\,y) = \frac{x^2 - y^2}{2}$. $G = \{F(x,\,y) > 0\} = \{(x,\,y):\: |x| > |y|\}$ -- непустое, открытое, $0 \in \partial G$.
 
-				                  Её производная в силу данной системы равна: 
-													\begin{align*}
-														\mathring{F}(x,\,y) = x(\lambda_1x + \omega_1(x,\,y)) - y(\lambda_2y + \omega_2(x,\,y)) = \\
-														=\lambda_1x^2 - \lambda_2y^2 + \Omega(x,\,y),\, \Omega = x\omega_1 - y\omega_2
-													\end{align*}
-													
+				                  Её производная в силу данной системы равна:
+				                  \begin{align*}
+					                  \mathring{F}(x,\,y) = x(\lambda_1x + \omega_1(x,\,y)) - y(\lambda_2y + \omega_2(x,\,y)) = \\
+					                  =\lambda_1x^2 - \lambda_2y^2 + \Omega(x,\,y),\, \Omega = x\omega_1 - y\omega_2
+				                  \end{align*}
+
 				                  Все условия теоремы Четаева соблюдены $\Rightarrow x = 0$ -- неустойчиво
 			            \end{itemize}
 		      \end{enumerate}
@@ -1955,10 +1955,10 @@
 			      \item $\lambda < 0,\, \varepsilon > 0$
 
 			            Возьмём в качестве функции Ляпунова $F(x,\,y) = \frac{x^2 + y^2}{2}$. Её производная в силу данной системы равна:
-									\begin{align*}
-										\mathring{F}(x,\,y) = x(\lambda x + \varepsilon y + \omega_1(x,\,y)) + y(\lambda y + \omega_2(x,\,y)) = \\
-										= \lambda x^2 + \varepsilon xy + \lambda y^2 + \Omega(x,\,y),\, \Omega = x\omega_1 + y\omega_2
-									\end{align*}
+			            \begin{align*}
+				            \mathring{F}(x,\,y) = x(\lambda x + \varepsilon y + \omega_1(x,\,y)) + y(\lambda y + \omega_2(x,\,y)) = \\
+				            = \lambda x^2 + \varepsilon xy + \lambda y^2 + \Omega(x,\,y),\, \Omega = x\omega_1 + y\omega_2
+			            \end{align*}
 			            Очевидно, что $\Omega \in C^2(D),\, \Omega$ -- 2-плоская в $x = 0,\, y = 0$.
 
 			            Пользуясь критерием Сильвестра, получаем ограничение на $\lambda:\: \lambda^2 - \frac{\varepsilon^2}{4} > 0$, но так как $\lambda < 0$, то мы можем отделить его от нуля некой константой $\lambda < \varepsilon_0 < 0$.
